@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_init_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 08:57:54 by fsantama          #+#    #+#             */
-/*   Updated: 2024/07/24 08:57:54 by fsantama         ###   ########.fr       */
+/*   Created: 2024/07/25 09:25:04 by fsantama          #+#    #+#             */
+/*   Updated: 2024/07/25 09:25:04 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
 
-int main(int argc, char **argv)
+void    ft_init_data(t_data *data)
 {
-    t_data  data;
+    /*
+    int	i;
 
-    // ft_printf("%s", &(HEADER)); IMPRIMIR HEADER CUANDO LO HAGA
-    if (argc == 2 && argv[1])
-	{
-        ft_init_data(&data);
-		return (EXIT_SUCCESS);
-	}
-	else
-	{
-	//	ft_error(data, INVALID_ARGC);
-		return (EXIT_FAILURE);
-	}
+	i = -1;
+	while (++i < 6)
+		data->ids[i] = NULL;
+        */
+	data->map_close.img = NULL;
+	data->map_open.img = NULL;
+	data->screen_width = 0;
+	data->screen_height = 0;
+	data->pause = 0;
+	data->door_open = 0;
+	data->pass_door = 0;
+	data->cursor_hook = 0;
+//	init_colors(data);
 }
-
