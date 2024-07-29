@@ -70,13 +70,12 @@ clean:
 #	@$(RM) $(OBJS_BONUS)
 	@$(RM) $(GNL_DIR)/get_next_line.o
 	@make clean -C $(MLX_DIR) --silent
-	@make clean -C libft --silent
 	@echo Objects files $(RED)cleaned$(NOCOLOR)
 
 fclean: clean
 	@$(RM) $(NAME)
 #	@$(RM) $(NAME_BONUS)
-	@$(RM) $(LIBFT)
+#	@$(RM) $(LIBFT)
 	@echo Executables files $(RED)cleaned$(NOCOLOR)
 
 re: fclean all
