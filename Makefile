@@ -1,8 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/07/31 12:44:44 by fsantama          #+#    #+#              #
+#    Updated: 2024/07/31 12:44:44 by fsantama         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = cub3d
 
 SRC_DIR = src
 #SRCS = $(wildcard $(SRC_DIR)/*.c)
-SRC = main.c utils/ft_init_data.c 
+SRC = cub3d.c \
+		utils/ft_init_data.c
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 
 OBJS = $(SRCS:.c=.o)
@@ -70,12 +83,13 @@ clean:
 #	@$(RM) $(OBJS_BONUS)
 	@$(RM) $(GNL_DIR)/get_next_line.o
 	@make clean -C $(MLX_DIR) --silent
+#	@make clean -C libft --silent
 	@echo Objects files $(RED)cleaned$(NOCOLOR)
 
 fclean: clean
 	@$(RM) $(NAME)
 #	@$(RM) $(NAME_BONUS)
-#	@$(RM) $(LIBFT)
+	@$(RM) $(LIBFT)
 	@echo Executables files $(RED)cleaned$(NOCOLOR)
 
 re: fclean all
