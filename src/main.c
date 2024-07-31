@@ -12,8 +12,6 @@
 
 #include "../inc/cub3d.h"
 
-t_mlx_errno g_mlx_errno;
-
 int main(int argc, char **argv)
 {
     t_data  data;

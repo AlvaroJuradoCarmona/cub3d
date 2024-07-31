@@ -29,8 +29,6 @@
 
 # define INVALID_ARGC "Enter a single map as argument\n"
 
-extern t_mlx_errno g_mlx_errno;
-
 // Estructura para almacenar las coordenadas
 typedef struct  s_pos
 {
