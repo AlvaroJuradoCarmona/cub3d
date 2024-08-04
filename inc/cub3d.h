@@ -27,7 +27,10 @@
 # define KEY_D 100
 # define KEY_ESC 65307
 
+// Definiciones de errores
 # define INVALID_ARGC "Enter a single map as argument\n"
+# define INVALID_EXT "Invalid extension\n"
+# define INVALID_FILE "Invalid file\n"
 
 // Estructura para almacenar las coordenadas
 typedef struct  s_pos
@@ -74,5 +77,7 @@ typedef struct  s_data
 int     main(int argc, char **argv);
 
 void    ft_init_data(t_data *data);
+
+void	ft_parse_file(t_data *data, char *f);
 
 #endif
