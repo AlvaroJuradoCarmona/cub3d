@@ -78,5 +78,8 @@ void    ft_init_data(t_data *data);
 
 void	ft_parse_data(char *file, t_data *data);
 
+void ft_error(char *prompt, int num_args, ...);
+
+
 
 #endif

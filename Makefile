@@ -13,26 +13,24 @@
 NAME = cub3d
 
 SRC_DIR = src
-#SRCS = $(wildcard $(SRC_DIR)/*.c)
 SRC = cub3d.c \
-		utils/ft_init_data.c \
-		parse/ft_parse_data.c \
-		
+        utils/ft_init_data.c \
+        parse/ft_parse_data.c \
+        utils/ft_error.c \
+
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 
 OBJS = $(SRCS:.c=.o)
 
 INC_LFT = -Ilibft
-LIBFT_D = libft
+LIBFT_D = inc/Libft
 LIBFT = $(LIBFT_D)/libft.a
-
 
 MLX_DIR = inc/MLX42
 LIBMLXL = libmlx42.a
 LIBMLX = $(MLX_DIR)/libmlx42.a #-ldl -lglfw -pthread -lm
 INC_MLX = -I$(MLX_DIR)/include/MLX42 -Iinclude -ldl -lglfw -pthread -lm
 #INC_MLX = -I$(MLX_DIR)/include/MLX42 #-Iinclude -lglfw -L"/Users/$$USER/.brew/opt/glfw/lib/"
-
 
 HEADERS = -Iinclude $(INC_LFT)
 
@@ -49,7 +47,7 @@ YELLOW = "\033[33m"
 RED = "\033[31m"
 NOCOLOR = "\033[0m"
 
-all: $(LIBMLXL) $(NAME)
+all: $(LIBMLXL) $(LIBFT) $(NAME)
 
 %.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@
@@ -65,39 +63,32 @@ $(LIBMLXL):
 	@make -C $(MLX_DIR) --silent
 	@echo $(GREEN)Library MLX42 ready$(NOCOLOR)
 
-#bonus: $(LIBFT) $(LIBMLXL) $(NAME_BONUS)
-
 $(LIBFT):
 	@echo $(VIOLET)Libft compilation...$(NOCOLOR)
-	@make -C $(LIBFT_D) --silent
-	@make bonus -C $(LIBFT_D) --silent
-	@echo $(GREEN)Libft ready$(NOCOLOR)
-
-#$(NAME_BONUS): $(OBJS_BONUS) $(GNL_OBJS)
-#	@echo $(YELLOW)Norminette...$(NOCOLOR)
-#	@norminette src_bonus
-#	@$(CC) $(FLAGS) $(INC) $(LIBMLX) $(LIBFT) $(SRCS_BONUS) $(SRC_GNL) -o $(NAME_BONUS)
-#	@echo $(GREEN)Program $(NAME_BONUS) ready$(NOCOLOR)
-
+	@if [ -d "$(LIBFT_D)" ]; then \
+		make -C $(LIBFT_D) --silent; \
+		make bonus -C $(LIBFT_D) --silent; \
+		echo $(GREEN)Libft ready$(NOCOLOR); \
+	else \
+		echo $(RED)Error: libft directory not found!$(NOCOLOR); \
+		exit 1; \
+	fi
 
 clean:
 	@$(RM) $(OBJS)
 #	@$(RM) $(OBJS_BONUS)
-	@$(RM) $(GNL_DIR)/get_next_line.o
+	@$(RM) $(SRC_DIR)/get_next_line.o
 	@make clean -C $(MLX_DIR) --silent
-#	@make clean -C libft --silent
+	@make clean -C $(LIBFT_D) --silent
 	@echo Objects files $(RED)cleaned$(NOCOLOR)
 
 fclean: clean
 	@$(RM) $(NAME)
 #	@$(RM) $(NAME_BONUS)
-	@$(RM) $(LIBFT)
+	@make fclean -C $(LIBFT_D) --silent
 	@echo Executables files $(RED)cleaned$(NOCOLOR)
 
 re: fclean all
 	@echo $(RED)Cleaned$(NOCOLOR) and $(GREEN)rebuilt$(NOCOLOR) $(NAME) project
 
-#re_bonus: fclean bonus
-#	@echo $(RED)Cleaned$(NOCOLOR) and $(GREEN)rebuilt$(NOCOLOR) $(NAME_BONUS) project
-
-.PHONY: all clean fclean re #re_bonus
+.PHONY: all clean fclean re
