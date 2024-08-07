@@ -15,14 +15,16 @@ NAME = cub3d
 SRC_DIR = src
 #SRCS = $(wildcard $(SRC_DIR)/*.c)
 SRC = cub3d.c \
-		utils/ft_init_data.c
+		utils/ft_init_data.c \
+		parse/ft_parse_data.c \
+		
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 
 OBJS = $(SRCS:.c=.o)
 
 INC_LFT = -Ilibft
-#LIBFT_D = libft
-#LIBFT = $(LIBFT_D)/libft.a
+LIBFT_D = libft
+LIBFT = $(LIBFT_D)/libft.a
 
 
 MLX_DIR = inc/MLX42

@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_parse_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 13:26:54 by fsantama          #+#    #+#             */
-/*   Updated: 2024/07/31 13:26:54 by fsantama         ###   ########.fr       */
+/*   Created: 2024/08/05 12:30:53 by fsantama          #+#    #+#             */
+/*   Updated: 2024/08/05 12:30:53 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
 
-int main(int argc, char **argv)
+void	ft_parse_data(char *file, t_data *data)
 {
-    t_data  data;
+    int		fd;
+    size_t	len;
 
-    // ft_printf("%s", &(HEADER)); IMPRIMIR HEADER CUANDO LO HAGA
-    if (argc == 2 && argv[1])
-	{
-        ft_init_data(&data);
-		ft_parse_data(argv[1], &data);
-		return (EXIT_SUCCESS);
-	}
-	else
-	{
-		
-	//	ft_error(data, INVALID_ARGC);
-		return (EXIT_FAILURE);
-	}
+    len = strlen(file);
+    if (len < 5 || strcmp(file + len - 4, ".cub") != 0)
+//		ft_error("Error\nInvalid extension.", 0);
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+//		ft_error("Error\nCould not read the file\n", 0);
+	//ft_readmap(fd, data);
+	close(fd);
+	//ft_map_parse(data);
 }
-

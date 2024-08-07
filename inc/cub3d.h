@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <math.h>
 # include "MLX42/include/MLX42/MLX42.h"
+# include "Libft/libft.h"
 
 // Definiciones de teclas (pueden variar dependiendo de la distribución de MinilibX)
 # define KEY_W 119
@@ -74,5 +75,8 @@ typedef struct  s_data
 int     main(int argc, char **argv);
 
 void    ft_init_data(t_data *data);
+
+void	ft_parse_data(char *file, t_data *data);
+
 
 #endif
