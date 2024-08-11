@@ -29,6 +29,8 @@
 # define KEY_ESC 65307
 
 # define INVALID_ARGC "Enter a single map as argument\n"
+# define INVALID_EXT "Invalid extension\n"
+# define INVALID_FILE "Invalid file\n"
 
 // Estructura para almacenar las coordenadas
 typedef struct  s_pos
