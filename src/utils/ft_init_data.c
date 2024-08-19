@@ -14,13 +14,11 @@
 
 void    ft_init_data(t_data *data)
 {
-    /*
     int	i;
 
 	i = -1;
 	while (++i < 6)
-		data->ids[i] = NULL;
-        */
+		data->iden[i] = NULL;
 	data->map_close.img = NULL;
 	data->map_open.img = NULL;
 	data->screen_width = 0;
@@ -29,5 +27,5 @@ void    ft_init_data(t_data *data)
 	data->door_open = 0;
 	data->pass_door = 0;
 	data->cursor_hook = 0;
-//	init_colors(data);
+//	init_colors(data);  Esto depende de los colores que se quieran usar NO ES PRIORIDAD
 }

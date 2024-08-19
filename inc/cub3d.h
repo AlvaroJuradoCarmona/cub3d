@@ -61,6 +61,7 @@ typedef struct  s_img
 // Estructura principal para almacenar todos los datos del juego
 typedef struct  s_data
 {
+    char        *iden[6];
     int         screen_width;
     int         screen_height;
     t_img       img;

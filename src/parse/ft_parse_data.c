@@ -12,6 +12,13 @@
 
 #include "../../inc/cub3d.h"
 
+static void	ft_readmap(int fd, t_data *data)
+{
+	char *line;
+
+	line = get_next_line(fd);
+}
+
 void	ft_parse_data(char *file, t_data *data)
 {
     int		fd;
