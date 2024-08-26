@@ -10,6 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
+# =============================================================================#
+#                        	GENERAL CONFIG & FLAGS                             #
+# =============================================================================#
+
 NAME = cub3d
 
 SRC_DIR = src
@@ -18,7 +22,12 @@ SRC = cub3d.c \
         parse/ft_parse_data.c \
         utils/ft_error.c \
 
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
+SRCS = inc/get_next_line/get_next_line.c \
+			inc/get_next_line/get_next_line_utils.c \
+			src/parse/ft_parse_data \
+			src/utils/ft_error \
+			src/utils/ft_init_data \
+			src/cub3d.c \
 
 OBJS = $(SRCS:.c=.o)
 

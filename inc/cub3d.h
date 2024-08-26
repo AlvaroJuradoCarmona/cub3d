@@ -32,6 +32,20 @@
 # define INVALID_EXT "Invalid extension\n"
 # define INVALID_FILE "Invalid file\n"
 
+/*---------------------------- HEADER ----------------------------*/
+
+# define HEADER  "   ____      _    _____ ____  \n\
+  / ___|   _| |__|___ /|  _ | \n\
+ | |  | | | |  _ | |_ || | | |\n\
+ | |__| |_| | |_) |__) | |_| |\n\
+  |____|__ _|_ __/____/|____/ \n\
+                               \n\
+\n\
+		 A simple FPS project implemented in C \n\
+		                 By \n\
+		        --- ajurado- && fsantama --- \n\
+"
+
 // Estructura para almacenar las coordenadas
 typedef struct  s_pos
 {
