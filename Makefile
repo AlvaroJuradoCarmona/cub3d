@@ -24,9 +24,9 @@ SRC = cub3d.c \
 
 SRCS = inc/get_next_line/get_next_line.c \
 			inc/get_next_line/get_next_line_utils.c \
-			src/parse/ft_parse_data \
-			src/utils/ft_error \
-			src/utils/ft_init_data \
+			src/parse/ft_parse_data.c \
+			src/utils/ft_error.c \
+			src/utils/ft_init_data.c \
 			src/cub3d.c \
 
 OBJS = $(SRCS:.c=.o)
@@ -34,6 +34,7 @@ OBJS = $(SRCS:.c=.o)
 INC_LFT = -Ilibft
 LIBFT_D = inc/Libft
 LIBFT = $(LIBFT_D)/libft.a
+PRINTF 	=	./inc/ft_printf/libftprintf.a
 
 MLX_DIR = inc/MLX42
 LIBMLXL = libmlx42.a
@@ -45,7 +46,7 @@ HEADERS = -Iinclude $(INC_LFT)
 
 INC = $(HEADERS) $(INC_MLX)
 
-CC = clang
+CC = gcc
 FLAGS = -Wall -Werror -Wextra -g
 
 RM = rm -f
@@ -61,7 +62,7 @@ all: $(LIBMLXL) $(LIBFT) $(NAME)
 %.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@
 
-$(NAME): $(OBJS) $(LIBFT) inc/cub3d.h
+$(NAME): $(OBJS) $(LIBFT) $(PRINTF) inc/cub3d.h
 	@echo $(YELLOW)Norminette cub3d...$(NOCOLOR)
 #	@norminette src
 	@$(CC) $(FLAGS) $(INC) $(SRCS) $(LIBMLX) $(LIBFT) -o $(NAME) -g
@@ -83,6 +84,9 @@ $(LIBFT):
 		exit 1; \
 	fi
 
+$(PRINTF): 
+	@make  -C inc/ft_printf > /dev/null
+
 clean:
 	@$(RM) $(OBJS)
 #	@$(RM) $(OBJS_BONUS)
@@ -95,6 +99,7 @@ fclean: clean
 	@$(RM) $(NAME)
 #	@$(RM) $(NAME_BONUS)
 	@make fclean -C $(LIBFT_D) --silent
+	@make -C inc/ft_printf clean > /dev/null
 	@echo Executables files $(RED)cleaned$(NOCOLOR)
 
 re: fclean all

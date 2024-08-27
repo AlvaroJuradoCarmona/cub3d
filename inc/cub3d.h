@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
+# include <stdarg.h>
 # include "MLX42/include/MLX42/MLX42.h"
 # include "Libft/libft.h"
 
@@ -28,9 +29,9 @@
 # define KEY_D 100
 # define KEY_ESC 65307
 
-# define INVALID_ARGC "Enter a single map as argument\n"
-# define INVALID_EXT "Invalid extension\n"
-# define INVALID_FILE "Invalid file\n"
+# define INVALID_ARGC "Error. Enter a single map as argument\n"
+# define INVALID_EXT "Error. Invalid extension\n"
+# define INVALID_FILE "Error. Invalid file\n"
 
 /*---------------------------- HEADER ----------------------------*/
 
@@ -89,14 +90,14 @@ typedef struct  s_data
 
 // Prototipos de funciones
 
+char	*get_next_line(int fd);
+
 int     main(int argc, char **argv);
 
 void    ft_init_data(t_data *data);
 
 void	ft_parse_data(char *file, t_data *data);
 
-void ft_error(char *prompt, int num_args, ...);
-
-
+void ft_error(const char *prompt, int num_args, ...);
 
 #endif
