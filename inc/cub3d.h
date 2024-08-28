@@ -21,6 +21,7 @@
 # include <stdarg.h>
 # include "MLX42/include/MLX42/MLX42.h"
 # include "Libft/libft.h"
+# include "ft_printf/ft_printf.h"
 
 // Definiciones de teclas (pueden variar dependiendo de la distribución de MinilibX)
 # define KEY_W 119
@@ -35,17 +36,16 @@
 
 /*---------------------------- HEADER ----------------------------*/
 
-# define HEADER  "   ____      _    _____ ____  \n\
-  / ___|   _| |__|___ /|  _ | \n\
- | |  | | | |  _ | |_ || | | |\n\
- | |__| |_| | |_) |__) | |_| |\n\
-  |____|__ _|_ __/____/|____/ \n\
-                               \n\
-\n\
-		 A simple FPS project implemented in C \n\
+# define HEADER  "\033[36;1m                       ____      _    _____ ____  \n\
+                      / ___|   _| |__|___ /|  _ | \n\
+                     | |  | | | |  _ | |_ || | | |\n\
+                     | |__| |_| | |_) |__) | |_| |\n\
+                      |____|__ _|_ __/____/|____/ \n\
+                                                   \n\
+\033[37;1m                  A simple FPS project implemented in C \n\
 		                 By \n\
-		        --- ajurado- && fsantama --- \n\
-"
+		    --- ajurado- && fsantama --- \n\
+\n\033[0m"
 
 // Estructura para almacenar las coordenadas
 typedef struct  s_pos
@@ -94,10 +94,12 @@ char	*get_next_line(int fd);
 
 int     main(int argc, char **argv);
 
+void    ft_print_header(void);
+
 void    ft_init_data(t_data *data);
 
 void	ft_parse_data(char *file, t_data *data);
 
-void ft_error(const char *prompt, int num_args, ...);
+void    ft_error(const char *prompt, int num_args, ...);
 
 #endif

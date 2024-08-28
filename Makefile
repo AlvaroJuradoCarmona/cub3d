@@ -22,11 +22,16 @@ SRC = cub3d.c \
         parse/ft_parse_data.c \
         utils/ft_error.c \
 
+# =============================================================================#
+#                              MANDATORY PART                                  #
+# =============================================================================#
+
 SRCS = inc/get_next_line/get_next_line.c \
 			inc/get_next_line/get_next_line_utils.c \
 			src/parse/ft_parse_data.c \
 			src/utils/ft_error.c \
 			src/utils/ft_init_data.c \
+			src/utils/ft_print_header.c \
 			src/cub3d.c \
 
 OBJS = $(SRCS:.c=.o)
@@ -57,7 +62,7 @@ YELLOW = "\033[33m"
 RED = "\033[31m"
 NOCOLOR = "\033[0m"
 
-all: $(LIBMLXL) $(LIBFT) $(NAME)
+all: $(LIBMLXL) $(LIBFT) $(PRINTF) $(NAME)
 
 %.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@
@@ -65,7 +70,7 @@ all: $(LIBMLXL) $(LIBFT) $(NAME)
 $(NAME): $(OBJS) $(LIBFT) $(PRINTF) inc/cub3d.h
 	@echo $(YELLOW)Norminette cub3d...$(NOCOLOR)
 #	@norminette src
-	@$(CC) $(FLAGS) $(INC) $(SRCS) $(LIBMLX) $(LIBFT) -o $(NAME) -g
+	@$(CC) $(FLAGS) $(INC) $(SRCS) $(LIBMLX) $(LIBFT) $(PRINTF) -o $(NAME) -g
 	@echo $(GREEN)Program $(NAME) ready$(NOCOLOR)
 
 $(LIBMLXL):

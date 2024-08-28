@@ -12,8 +12,20 @@
 
 #include "../inc/cub3d.h"
 
-// Función para verificar los argumentos
-static void	check_arguments(int argc, char **argv)
+/**
+ * @brief Verifica los argumentos pasados al programa.
+ *
+ * Esta función comprueba que el número de argumentos pasados al programa es el correcto.
+ * En este caso, se espera que el número de argumentos sea 2, lo que implica que el 
+ * programa ha sido llamado con un único archivo de mapa. Si la verificación falla, 
+ * se muestra un mensaje de error utilizando `ft_error`.
+ *
+ * @param argc El número de argumentos pasados al programa.
+ * @param argv El array de strings con los argumentos pasados al programa.
+ *
+ * @note Si `argc` no es igual a 2 o `argv[1]` es NULL, se llama a `ft_error` para 
+ *       mostrar el mensaje de error y terminar la ejecución del programa.
+ */static void	check_arguments(int argc, char **argv)
 {
 	if (argc != 2 || !argv[1])
 		ft_error(INVALID_ARGC, 0);
@@ -31,11 +43,29 @@ static void	setup_mlx(t_data *data)
 }
 */
 
+/**
+ * @brief Punto de entrada principal del programa.
+ *
+ * Inicializa el programa, verifica los argumentos, carga los datos del juego y 
+ * eventualmente configura la ventana gráfica utilizando la biblioteca MLX42.
+ * 
+ * @param argc Número de argumentos pasados al programa.
+ * @param argv Array de cadenas de texto que contiene los argumentos del programa.
+ * 
+ * @return Devuelve `EXIT_SUCCESS` en caso de que el programa se ejecute correctamente.
+ *         En caso de error, se gestionan mediante llamadas a `ft_error` que terminarán el programa.
+ * 
+ * @note La función realiza las siguientes tareas:
+ *       - Imprime el encabezado del juego.
+ *       - Verifica los argumentos de entrada.
+ *       - Inicializa los datos del juego.
+ *       - Carga los datos del mapa y otros elementos del juego.
+ */
 int main(int argc, char **argv)
 {
     t_data  data;
 
-	// ft_printf("%s", &(HEADER)); // Imprimir header cuando esté implementado
+	ft_print_header();
 	check_arguments(argc, argv);
 	ft_init_data(&data);
 	ft_parse_data(argv[1], &data);
