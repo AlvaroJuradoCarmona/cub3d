@@ -12,31 +12,29 @@
 
 #include "../../inc/cub3d.h"
 
-/* 
-static void	ft_readmap(int fd, t_data *data)
-{
-//	char *line;
-	(void) fd;
-
-//	line = get_next_line(fd);
-}
-*/
-
+/**
+ * @brief Función principal que inicia el parsing del archivo .cub
+ * 
+ * Esta función se encarga de validar el nombre del archivo, abrirlo y 
+ * delegar el trabajo de parsing a las funciones correspondientes. 
+ * Valida que el archivo tenga la extensión correcta (.cub) y luego 
+ * procede a leer el contenido del archivo.
+ * 
+ * @param file El nombre del archivo .cub a procesar
+ * @param data La estructura principal del juego (t_data)
+ */
 void	ft_parse_data(char *file, t_data *data)
 {
-    int		fd;
-	size_t	len;
+	int		fd;
+	int		file_len;
 
-	data->screen_width = 0; // PARA QUE NO DE ERROR DE MOMENTO
-	len = strlen(file);
-	if (len < 5 || strcmp(file + len - 4, ".cub") != 0)
-		ft_error("Error\nInvalid extension.", 0);
-		//ft_putendl_fd(EXTENSION_ERR, STDERR_FILENO); ESTO NO LO ENTIENDO
+	file_len = ft_strlen(file);
+	if (file_len < 5 || ft_strncmp(".cub", &file[file_len - 4], 4) != 0)
+		ft_error("Error: Invalid file extension. Expected .cub", 0);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_error("Error\nCould not read the file\n", 0);
-		//ft_putendl_fd(FILE_ERR, STDERR_FILENO); ESTO NO LO ENTIENDO
-	//ft_readmap(fd, data);
+		ft_error("Error: Could not open the file.", 0);
+	ft_read_map(fd, data);
 	close(fd);
-	//ft_map_parse(data);
+//	ft_finalize_map(data);
 }

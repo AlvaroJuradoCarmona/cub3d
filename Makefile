@@ -28,10 +28,18 @@ SRC = cub3d.c \
 
 SRCS = inc/get_next_line/get_next_line.c \
 			inc/get_next_line/get_next_line_utils.c \
+			src/parse/ft_check_map.c \
+			src/parse/ft_map_normalize.c \
 			src/parse/ft_parse_data.c \
+			src/parse/ft_parse_identifiers.c \
+			src/parse/ft_read_map.c \
 			src/utils/ft_error.c \
+			src/utils/ft_free_and_join.c \
+			src/utils/ft_free_and_null.c \
+			src/utils/ft_free.c \
 			src/utils/ft_init_data.c \
 			src/utils/ft_print_header.c \
+			src/utils/ft_split_size.c \
 			src/cub3d.c \
 
 OBJS = $(SRCS:.c=.o)

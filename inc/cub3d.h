@@ -23,7 +23,7 @@
 # include "Libft/libft.h"
 # include "ft_printf/ft_printf.h"
 
-// Definiciones de teclas (pueden variar dependiendo de la distribución de MinilibX)
+// Definiciones de teclas
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
@@ -47,7 +47,14 @@
 		    --- ajurado- && fsantama --- \n\
 \n\033[0m"
 
-// Estructura para almacenar las coordenadas
+// Estructura para almacenar coordenadas simples (x, y)
+typedef struct  s_coords
+{
+    int         x;
+    int         y;
+}               t_coords;
+
+// Estructura para almacenar posiciones (doble precisión)
 typedef struct  s_pos
 {
     double      x;
@@ -86,20 +93,30 @@ typedef struct  s_data
     bool        door_open;
     bool        pass_door;
     bool        cursor_hook;
+    char        **map;         // Almacena el mapa
+    int         map_height;    // Almacena la altura del mapa
+    int         map_width;     // Almacena el ancho del mapa
 }               t_data;
 
+
 // Prototipos de funciones
-
-char	*get_next_line(int fd);
-
+char    *get_next_line(int fd);
 int     main(int argc, char **argv);
-
 void    ft_print_header(void);
-
 void    ft_init_data(t_data *data);
-
-void	ft_parse_data(char *file, t_data *data);
-
+void    ft_parse_data(char *file, t_data *data);
 void    ft_error(const char *prompt, int num_args, ...);
+void    ft_read_map(int fd, t_data *data);
+void    ft_check_map(char *map, t_data *data);
+void    ft_normalize_map(char *map, t_data *data);
+char    *ft_parse_identifiers(int fd, t_data *data, char *line);
+char    *ft_free_and_join(char *s1, char *s2);
+void    ft_free_and_null(void **ptr);
+void    ft_free(void *ptr);
+int     ft_split_size(char **split);
+
+
+// Agregar el prototipo de ft_is_invalid_value si es necesario
+bool    ft_is_invalid_value(char c); 
 
 #endif
