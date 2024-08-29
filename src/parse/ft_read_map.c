@@ -24,7 +24,7 @@
 void	ft_read_map(int fd, t_data *data)
 {
 	char	*line;
-	char	*map_content;
+	char	*map;
 
 	line = ft_parse_identifiers(fd, data, get_next_line(fd)); // HAY QUE HACERLA, ESTA PARTE ES CHUNGA
 	while (line && line[0] == '\n')
@@ -34,16 +34,16 @@ void	ft_read_map(int fd, t_data *data)
 	}
 	if (!line)
 		ft_error("Error: File doesn't contain a valid map.", 0);
-	map_content = ft_strdup(" \n");
+	map = ft_strdup(" \n");
 	while (line)
 	{
 		if (line[0] == '\n')
 			break ;
-		map_content = ft_free_and_join(map_content, line);
+		map = ft_free_and_join(map, line);
 		line = get_next_line(fd);
 	}
-	map_content = ft_free_and_join(map_content, ft_strdup("\n "));
-	ft_check_map(map_content, data);
-	ft_normalize_map(map_content, data);
-	ft_free(map_content);
+	map = ft_free_and_join(map, ft_strdup("\n "));
+	ft_check_map(map, data);
+	ft_normalize_map(map, data);
+	ft_free(map);
 }
