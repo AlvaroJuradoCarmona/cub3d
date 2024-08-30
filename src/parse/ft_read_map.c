@@ -26,7 +26,7 @@ void	ft_read_map(int fd, t_data *data)
 	char	*line;
 	char	*map;
 
-	line = ft_parse_identifiers(fd, data, get_next_line(fd)); // HAY QUE HACERLA, ESTA PARTE ES CHUNGA
+	line = ft_parse_identifiers(fd, data, get_next_line(fd));
 	while (line && line[0] == '\n')
 	{
 		ft_free_and_null((void **)&line);
