@@ -39,6 +39,7 @@ SRCS = inc/get_next_line/get_next_line.c \
 			src/utils/ft_free.c \
 			src/utils/ft_init_data.c \
 			src/utils/ft_print_header.c \
+			src/utils/ft_split_free.c \
 			src/utils/ft_split_size.c \
 			src/cub3d.c \
 

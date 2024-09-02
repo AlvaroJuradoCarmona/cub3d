@@ -3,8 +3,8 @@ SO ./textures/rays.png
 WE ./textures/rays.png
 EA ./textures/rays.png
 
-F 0,110,180,40
-C 0,0,0,30
+F 110,180,40
+C 0,0,30
 
         1111111111111111111111111
         1000000001110000000000001

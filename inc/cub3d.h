@@ -61,6 +61,15 @@ typedef struct  s_pos
     double      y;
 }               t_pos;
 
+// Estructura para almacenar los valores de color
+typedef struct  s_pixels
+{
+    int         r;  // Componente rojo
+    int         g;  // Componente verde
+    int         b;  // Componente azul
+    int         a;  // Componente alfa (transparencia)
+}               t_pixels;
+
 // Estructura para almacenar los datos del mapa
 typedef struct  s_map
 {
@@ -68,6 +77,8 @@ typedef struct  s_map
     int         width;
     int         height;
     char        **map;
+    t_pixels    floor_color;    // Color del suelo
+    t_pixels    ceiling_color;  // Color del techo
 }               t_map;
 
 // Estructura para almacenar datos de la imagen
@@ -99,6 +110,7 @@ typedef struct  s_data
 }               t_data;
 
 
+
 // Prototipos de funciones
 char    *get_next_line(int fd);
 int     main(int argc, char **argv);
@@ -113,6 +125,7 @@ char    *ft_parse_identifiers(int fd, t_data *data, char *line);
 char    *ft_free_and_join(char *s1, char *s2);
 void    ft_free_and_null(void **ptr);
 void    ft_free(void *ptr);
+void	ft_split_free(char **str);
 int     ft_split_size(char **split);
 
 
