@@ -36,5 +36,5 @@ void	ft_parse_data(char *file, t_data *data)
 		ft_error("Error: Could not open the file.", 0);
 	ft_read_map(fd, data);
 	close(fd);
-//	ft_finalize_map(data);
+	ft_parse_map(data);
 }

@@ -47,6 +47,10 @@
 		    --- ajurado- && fsantama --- \n\
 \n\033[0m"
 
+// Definir el tamaño del bloque y la conversión a radianes
+# define BLOCKSIZE 64
+# define TORADIANS (M_PI / 180.0)
+
 // Estructura para almacenar coordenadas simples (x, y)
 typedef struct  s_coords
 {
@@ -61,6 +65,13 @@ typedef struct  s_pos
     double      y;
 }               t_pos;
 
+// Estructura para almacenar valores del jugador
+typedef struct  s_player
+{
+    t_pos       pos;
+    double      angle;
+}               t_player;
+
 // Estructura para almacenar los valores de color
 typedef struct  s_pixels
 {
@@ -74,8 +85,8 @@ typedef struct  s_pixels
 typedef struct  s_map
 {
     int         *img;
-    int         width;
-    int         height;
+    int         map_width;
+    int         map_height;
     char        **map;
     t_pixels    floor_color;    // Color del suelo
     t_pixels    ceiling_color;  // Color del techo
@@ -107,9 +118,8 @@ typedef struct  s_data
     char        **map;         // Almacena el mapa
     int         map_height;    // Almacena la altura del mapa
     int         map_width;     // Almacena el ancho del mapa
+    t_player    player;        // Información del jugador
 }               t_data;
-
-
 
 // Prototipos de funciones
 char    *get_next_line(int fd);
@@ -127,9 +137,7 @@ void    ft_free_and_null(void **ptr);
 void    ft_free(void *ptr);
 void	ft_split_free(char **str);
 int     ft_split_size(char **split);
-
-
-// Agregar el prototipo de ft_is_invalid_value si es necesario
-bool    ft_is_invalid_value(char c); 
+void    ft_parse_map(t_data *data);
+void    ft_initial_cleaner(t_data *data);
 
 #endif
