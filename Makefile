@@ -39,6 +39,7 @@ SRCS = inc/get_next_line/get_next_line.c \
 			src/utils/ft_free_and_null.c \
 			src/utils/ft_free.c \
 			src/utils/ft_init_data.c \
+			src/utils/ft_init_images.c \
 			src/utils/ft_initial_cleaner.c \
 			src/utils/ft_print_header.c \
 			src/utils/ft_split_free.c \
@@ -55,7 +56,7 @@ PRINTF 	=	./inc/ft_printf/libftprintf.a
 MLX_DIR = inc/MLX42
 LIBMLXL = libmlx42.a
 LIBMLX = $(MLX_DIR)/libmlx42.a #-ldl -lglfw -pthread -lm
-INC_MLX = -I$(MLX_DIR)/include/MLX42 -Iinclude -ldl -lglfw -pthread -lm
+INC_MLX = -I$(MLX_DIR)/include/MLX42 -lm -I include -lglfw
 #INC_MLX = -I$(MLX_DIR)/include/MLX42 #-Iinclude -lglfw -L"/Users/$$USER/.brew/opt/glfw/lib/"
 
 HEADERS = -Iinclude $(INC_LFT)

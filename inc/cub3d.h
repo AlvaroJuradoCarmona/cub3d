@@ -85,8 +85,8 @@ typedef struct  s_pixels
 typedef struct  s_map
 {
     int         *img;
-    int         map_width;
-    int         map_height;
+    int         width;
+    int         height;
     char        **map;
     t_pixels    floor_color;    // Color del suelo
     t_pixels    ceiling_color;  // Color del techo
@@ -119,6 +119,17 @@ typedef struct  s_data
     int         map_height;    // Almacena la altura del mapa
     int         map_width;     // Almacena el ancho del mapa
     t_player    player;        // Información del jugador
+    void *mlx; // puntero al entorno MLX
+    void *win; // puntero a la ventana MLX
+    void *full_img; // imagen completa
+    void *background_img; // imagen de fondo
+    void *victory_img; // imagen de victoria
+    void *minimap; // minimapa
+    void *player_img; // imagen del jugador
+    void *chest_img; // imagen del cofre
+    int time_counter; // contador de tiempo
+    int open_coldown; // cooldown de apertura
+    void *time; // para mostrar el tiempo
 }               t_data;
 
 // Prototipos de funciones
@@ -139,5 +150,7 @@ void	ft_split_free(char **str);
 int     ft_split_size(char **split);
 void    ft_parse_map(t_data *data);
 void    ft_initial_cleaner(t_data *data);
+void	ft_init_images(t_data *data);
+
 
 #endif
