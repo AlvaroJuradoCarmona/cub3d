@@ -53,11 +53,11 @@ LIBFT_D = inc/Libft
 LIBFT = $(LIBFT_D)/libft.a
 PRINTF 	=	./inc/ft_printf/libftprintf.a
 
+MLX_FLAGS = -lglfw -lm -ldl -pthread  # Añade -ldl y -pthread si es necesario en tu sistema
 MLX_DIR = inc/MLX42
-LIBMLXL = libmlx42.a
-LIBMLX = $(MLX_DIR)/libmlx42.a #-ldl -lglfw -pthread -lm
-INC_MLX = -I$(MLX_DIR)/include/MLX42 -lm -I include -lglfw
-#INC_MLX = -I$(MLX_DIR)/include/MLX42 #-Iinclude -lglfw -L"/Users/$$USER/.brew/opt/glfw/lib/"
+LIBMLX = $(MLX_DIR)/libmlx42.a
+INC_MLX = -I$(MLX_DIR)/include/MLX42 -L/usr/local/lib
+
 
 HEADERS = -Iinclude $(INC_LFT)
 
@@ -80,10 +80,10 @@ all: $(LIBMLXL) $(LIBFT) $(PRINTF) $(NAME)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS) $(LIBFT) $(PRINTF) inc/cub3d.h
-	@echo $(YELLOW)Norminette cub3d...$(NOCOLOR)
-#	@norminette src
-	@$(CC) $(FLAGS) $(INC) $(SRCS) $(LIBMLX) $(LIBFT) $(PRINTF) -o $(NAME) -g
+	@$(CC) $(FLAGS) $(INC) $(OBJS) $(LIBMLX) $(LIBFT) $(PRINTF) $(MLX_FLAGS) -o $(NAME)
 	@echo $(GREEN)Program $(NAME) ready$(NOCOLOR)
+
+
 
 $(LIBMLXL):
 	@echo $(VIOLET)Lib MLX42 compilation...$(NOCOLOR)

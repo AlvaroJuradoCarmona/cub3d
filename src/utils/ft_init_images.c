@@ -51,8 +51,13 @@ static void init_images_aux(t_data *data)
 }
 */
 // Función principal para inicializar las imágenes y texturas
-void init_images(t_data *data)
+void ft_init_images(t_data *data)
 {
+    printf("init_images\n");
+
+    data->background_img = NULL;
+
+    /*
     data->mlx = mlx_init(data->screen_width, data->screen_height, "Cub3D", false);
     if (!data->mlx)
     {
@@ -80,4 +85,5 @@ void init_images(t_data *data)
 
     // Mostrar el tiempo en pantalla
 //    data->time = mlx_put_string(data->mlx, "TIME: 0", data->screen_width - MINIMAP_SIZE / 2 - 100, MINIMAP_SIZE + 10);
+*/
 }
