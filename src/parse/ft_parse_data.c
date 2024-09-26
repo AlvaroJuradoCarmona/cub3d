@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_parse_data.c                                    :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 12:30:53 by fsantama          #+#    #+#             */
-/*   Updated: 2024/08/05 12:30:53 by fsantama         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:04:58 by fsantama         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../inc/cub3d.h"
 
@@ -28,6 +28,8 @@ void	ft_parse_data(char *file, t_data *data)
 	int		fd;
 	int		file_len;
 
+	(void) data;
+	
 	file_len = ft_strlen(file);
 	if (file_len < 5 || ft_strncmp(".cub", &file[file_len - 4], 4) != 0)
 		ft_error("Error: Invalid file extension. Expected .cub", 0);
@@ -36,5 +38,5 @@ void	ft_parse_data(char *file, t_data *data)
 		ft_error("Error: Could not open the file.", 0);
 	ft_read_map(fd, data);
 	close(fd);
-	ft_parse_map(data);
+	//ft_parse_map(data);
 }

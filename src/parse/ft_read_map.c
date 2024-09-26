@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_read_map.c                                      :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:24:31 by fsantama          #+#    #+#             */
-/*   Updated: 2024/08/29 12:24:31 by fsantama         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:24:53 by fsantama         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../inc/cub3d.h"
 
@@ -23,10 +23,28 @@
  */
 void	ft_read_map(int fd, t_data *data)
 {
+	(void) data;
+//	(void) fd;
+	char	*line;
+
+	printf("ft_read_map\n");
+
+	line = get_next_line(fd);
+
+	while (line)
+	{
+		printf("Prueba");
+		printf("line: %s\n", line);
+		ft_free_and_null((void **)&line);
+		line = get_next_line(fd);
+	}
+	
+//	line = ft_parse_identifiers(fd, data, get_next_line(fd));
+	
+	/*
 	char	*line;
 	char	*map;
 
-	line = ft_parse_identifiers(fd, data, get_next_line(fd));
 	while (line && line[0] == '\n')
 	{
 		ft_free_and_null((void **)&line);
@@ -42,8 +60,9 @@ void	ft_read_map(int fd, t_data *data)
 		map = ft_free_and_join(map, line);
 		line = get_next_line(fd);
 	}
-	map = ft_free_and_join(map, ft_strdup("\n "));
-	ft_check_map(map, data);
-	ft_normalize_map(map, data);
-	ft_free(map);
+//	map = ft_free_and_join(map, ft_strdup("\n "));
+//	ft_check_map(map, data);
+//	ft_normalize_map(map, data);
+//	ft_free(map);
+*/
 }

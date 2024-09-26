@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:26:54 by fsantama          #+#    #+#             */
-/*   Updated: 2024/07/31 13:26:54 by fsantama         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:55:20 by fsantama         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../inc/cub3d.h"
 
@@ -32,9 +32,9 @@
 }
 
 // Función para inicializar el motor gráfico y configuraciones de MLX
-static void	setup_mlx(t_data *data)
-{
-	ft_init_images(data);
+//static void	setup_mlx(t_data *data)
+//{
+//	ft_init_images(data);
 /*
 	map_construct(data);
 	mlx_loop_hook(data->mlx, &ft_keyboard_hooks, (void *)data);
@@ -42,7 +42,7 @@ static void	setup_mlx(t_data *data)
 	mlx_cursor_hook(data->mlx, &ft_cursor_hook, (void *)data);
 	mlx_loop(data->mlx);
 	*/
-}
+//}
 
 /**
  * @brief Punto de entrada principal del programa.
@@ -70,7 +70,7 @@ int main(int argc, char **argv)
 	check_arguments(argc, argv);
 	ft_init_data(&data);
 	ft_parse_data(argv[1], &data);
-	setup_mlx(&data);
+	//setup_mlx(&data);
 	//ft_final_cleaner(&data); // Asume que hay que limpiar al final del programa
 	
     return (EXIT_SUCCESS);
