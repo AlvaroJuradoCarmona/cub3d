@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:44:34 by fsantama          #+#    #+#             */
-/*   Updated: 2024/09/26 10:49:39 by fsantama         ###   ########.fr       */
+/*   Updated: 2024/09/27 09:37:15 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,7 +33,7 @@ char *ft_free_and_join(char *s1, char *s2)
 	char	*strjoin;
 
 	strjoin = ft_strjoin(s1, s2);
-	ft_multiple_free(2, s1, s2);
+//	ft_multiple_free(2, s1, s2);
 	return (strjoin);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:38:25 by fsantama          #+#    #+#             */
-/*   Updated: 2024/09/26 13:12:32 by fsantama         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:28:28 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -94,7 +94,6 @@ char *ft_parse_identifiers(int fd, t_data *data, char *line)
     int i;     
     int j;     
 
-    printf("ft_parse_identifiers\n");
     i = 0;
     while (line && i <= 5)
     {   
