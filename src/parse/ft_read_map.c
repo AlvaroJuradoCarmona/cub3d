@@ -23,7 +23,6 @@
  */
 void	ft_read_map(int fd, t_data *data)
 {
-	(void) data;
 	char	*line;
 	char	*map;
 
@@ -47,4 +46,5 @@ void	ft_read_map(int fd, t_data *data)
 	ft_check_map(map, data);
 	ft_normalize_map(map, data);
 	ft_free(map);
+	ft_free(line);
 }

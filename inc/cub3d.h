@@ -21,7 +21,9 @@
 # include <stdarg.h>
 # include "MLX42/include/MLX42/MLX42.h"
 # include "Libft/libft.h"
-# include "ft_printf/ft_printf.h"
+
+# define WIDTH 640
+# define HEIGHT 480
 
 // Definiciones de teclas
 # define KEY_W 119
@@ -31,25 +33,31 @@
 # define KEY_ESC 65307
 
 # define INVALID_ARGC "Error. Enter a single map as argument\n"
-# define INVALID_EXT "Error. Invalid extension\n"
-# define INVALID_FILE "Error. Invalid file\n"
-
-/*---------------------------- HEADER ----------------------------*/
-
-# define HEADER  "\033[36;1m                       ____      _    _____ ____  \n\
-                      / ___|   _| |__|___ /|  _ | \n\
-                     | |  | | | |  _ | |_ || | | |\n\
-                     | |__| |_| | |_) |__) | |_| |\n\
-                      |____|__ _|_ __/____/|____/ \n\
-                                                   \n\
-\033[37;1m                  A simple FPS project implemented in C \n\
-		                 By \n\
-		    --- ajurado- && fsantama --- \n\
-\n\033[0m"
 
 // Definir el tamaño del bloque y la conversión a radianes
 # define BLOCKSIZE 64
 # define TORADIANS (M_PI / 180.0)
+
+typedef struct s_ray
+{
+	char	player_dir;
+	double	dir_x;
+	double	dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+	int		draw_start;
+	int		draw_end;
+	double	perp_wall_dist;
+	int		line_height;
+	double	wall_x;
+}	t_ray;
 
 // Estructura para almacenar coordenadas simples (x, y)
 typedef struct  s_coords

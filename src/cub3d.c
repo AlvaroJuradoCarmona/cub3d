@@ -66,7 +66,6 @@ int main(int argc, char **argv)
 {
     t_data  data;
 
-	ft_print_header();
 	check_arguments(argc, argv);
 	ft_init_data(&data);
 	ft_parse_data(argv[1], &data);
