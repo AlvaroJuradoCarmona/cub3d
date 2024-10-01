@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 12:30:53 by fsantama          #+#    #+#             */
-/*   Updated: 2024/09/27 10:39:17 by fsantama         ###   ########.fr       */
+/*   Updated: 2024/10/01 09:10:23 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -38,5 +38,5 @@ void	ft_parse_data(char *file, t_data *data)
 		ft_error("Error: Could not open the file.", 0);
 	ft_read_map(fd, data);
 	close(fd);
-//	ft_parse_map(data);
+	ft_parse_map(data);
 }

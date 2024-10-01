@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 09:26:28 by fsantama          #+#    #+#             */
-/*   Updated: 2024/09/27 10:39:02 by fsantama         ###   ########.fr       */
+/*   Updated: 2024/10/01 09:55:29 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,13 +32,16 @@ static int ft_check_surroundings(t_data data, int i, int j, int direction)
 
     while ((direction == 0 && (i >= 0 && i < limit)) || (direction == 1 && (j >= 0 && j < limit)))
     {
+        if (i < 0 || j < 0 || i >= data.map_height || j >= data.map_width || data.map[i][j] == '\0')
+            return (1);
+
         if (data.map[i][j] != ' ')
         {
             if (data.map[i][j] == '1') break;
             return (1);
         }
-        i += step;
-        j += step;
+        i += (direction == 0) ? step : 0;
+        j += (direction == 1) ? step : 0;
     }
     return (0);
 }
@@ -65,11 +68,11 @@ static int ft_validate_map(t_data data)
             if (data.map[i][j] == ' ')
             {
                 if (ft_check_surroundings(data, i, j, 0) || ft_check_surroundings(data, i, j, 1))
-                    return (1); // Error en validación
+                    return (1);
             }
         }
     }
-    return (0); // Mapa válido
+    return (0);
 }
 
 /**
@@ -105,7 +108,7 @@ static int ft_set_player_position(t_data *data)
             }
         }
     }
-    return (0); // No se encontró la posición del jugador
+    return (0);
 }
 
 /**
