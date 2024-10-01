@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_init_images.c                                   :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:12:17 by fsantama          #+#    #+#             */
-/*   Updated: 2024/09/05 11:12:17 by fsantama         ###   ########.fr       */
+/*   Updated: 2024/10/01 10:37:40 by fsantama         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../inc/cub3d.h"
 /*
@@ -55,9 +55,8 @@ void ft_init_images(t_data *data)
 {
     printf("init_images\n");
 
-    data->background_img = NULL;
+   // data->background_img = NULL;
 
-    /*
     data->mlx = mlx_init(data->screen_width, data->screen_height, "Cub3D", false);
     if (!data->mlx)
     {
@@ -85,5 +84,4 @@ void ft_init_images(t_data *data)
 
     // Mostrar el tiempo en pantalla
 //    data->time = mlx_put_string(data->mlx, "TIME: 0", data->screen_width - MINIMAP_SIZE / 2 - 100, MINIMAP_SIZE + 10);
-*/
 }
