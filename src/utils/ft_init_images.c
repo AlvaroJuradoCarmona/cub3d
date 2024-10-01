@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 11:12:17 by fsantama          #+#    #+#             */
-/*   Updated: 2024/10/01 10:37:40 by fsantama         ###   ########.fr       */
+/*   Updated: 2024/10/01 10:41:48 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -57,7 +57,7 @@ void ft_init_images(t_data *data)
 
    // data->background_img = NULL;
 
-    data->mlx = mlx_init(data->screen_width, data->screen_height, "Cub3D", false);
+    data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
     if (!data->mlx)
     {
         ft_error("Error: MLX init failure", 0);
