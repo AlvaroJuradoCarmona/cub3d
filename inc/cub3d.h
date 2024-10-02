@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 08:45:25 by fsantama          #+#    #+#             */
-/*   Updated: 2024/10/01 10:41:08 by fsantama         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:18:54 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,7 @@
 # include <math.h>
 # include <stdarg.h>
 # include "MLX42/include/MLX42/MLX42.h"
-# include "Libft/libft.h"
+# include "libft/libft.h"
 
 # define WIDTH 1920
 # define HEIGHT 1080

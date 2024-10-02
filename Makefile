@@ -6,7 +6,7 @@
 #    By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 12:44:44 by fsantama          #+#    #+#              #
-#    Updated: 2024/10/01 08:56:00 by fsantama         ###   ########.fr        #
+#    Updated: 2024/10/02 10:18:20 by fsantama         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,7 +17,7 @@
 NAME = cub3d
 CFLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=42
 INCLUDES = -I $(LIBFT) -I $(GNL) -I $(MLX)/include
-LIBFT = inc/Libft
+LIBFT = inc/libft
 LIBFT_A = $(LIBFT)/libft.a
 GNL = inc/get_next_line
 MLX = inc/MLX42
