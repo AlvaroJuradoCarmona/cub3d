@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 08:45:25 by fsantama          #+#    #+#             */
-/*   Updated: 2024/10/02 10:18:54 by fsantama         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:21:05 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,6 +21,8 @@
 # include <stdarg.h>
 # include "MLX42/include/MLX42/MLX42.h"
 # include "libft/libft.h"
+# include <stdint.h>
+# include <stdbool.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -89,11 +91,24 @@ typedef struct  s_pixels
     int         a;  // Componente alfa (transparencia)
 }               t_pixels;
 
+typedef struct s_color
+{
+	t_pixels	white;
+	t_pixels	gray;
+	t_pixels	blue;
+	t_pixels	green;
+	t_pixels	golden;
+	t_pixels	red;
+	t_pixels	ceiling;
+	t_pixels	floor;
+}		t_color;
+
 // Estructura para almacenar los datos del mapa
 typedef struct  s_map
 {
-    int         *img;
+    uint8_t         *img;
     int         width;
+    int         rwidth;
     int         height;
     char        **map;
     t_pixels    floor_color;    // Color del suelo
@@ -134,10 +149,11 @@ typedef struct  s_data
     void *victory_img; // imagen de victoria
     void *minimap; // minimapa
     void *player_img; // imagen del jugador
-    void *chest_img; // imagen del cofre
+    mlx_image_t *chest_img; // imagen del cofre
     int time_counter; // contador de tiempo
     int open_coldown; // cooldown de apertura
     void *time; // para mostrar el tiempo
+    t_color color;
 }               t_data;
 
 // Prototipos de funciones
@@ -159,6 +175,8 @@ int     ft_split_size(char **split);
 void    ft_parse_map(t_data *data);
 void    ft_initial_cleaner(t_data *data);
 void	ft_init_images(t_data *data);
-
+void	ft_map_construct(t_data *data);
+void	ft_put_rgbcolor(uint8_t *pixels, t_pixels color, bool random);
+void	ft_put_rgbimg(uint8_t *dest, uint8_t *or);
 
 #endif

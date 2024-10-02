@@ -6,7 +6,7 @@
 #    By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 12:44:44 by fsantama          #+#    #+#              #
-#    Updated: 2024/10/02 10:18:20 by fsantama         ###   ########.fr        #
+#    Updated: 2024/10/02 10:20:41 by fsantama         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -27,6 +27,7 @@ EXTRA_F42 = -lglfw -L /Users/${USER}/.brew/opt/glfw/lib/ ${MLX_A} ${LIBFT_A}
 
 SRCS_GNL = $(GNL)/get_next_line.c $(GNL)/get_next_line_utils.c
 SRCS = src/parse/ft_check_map.c \
+			src/parse/ft_map_construct.c \
 			src/parse/ft_map_normalize.c \
 			src/parse/ft_parse_data.c \
 			src/parse/ft_parse_identifiers.c \
@@ -39,6 +40,8 @@ SRCS = src/parse/ft_check_map.c \
 			src/utils/ft_init_data.c \
 			src/utils/ft_init_images.c \
 			src/utils/ft_initial_cleaner.c \
+			src/utils/ft_put_rgbcolor.c \
+			src/utils/ft_put_rgbimg.c \
 			src/utils/ft_split_free.c \
 			src/utils/ft_split_size.c \
 			src/cub3d.c \

@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:26:54 by fsantama          #+#    #+#             */
-/*   Updated: 2024/10/01 10:01:46 by fsantama         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:22:22 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -35,8 +35,8 @@
 static void	setup_mlx(t_data *data)
 {
 	ft_init_images(data);
-/*
-	map_construct(data);
+	ft_map_construct(data);
+	/*
 	mlx_loop_hook(data->mlx, &ft_keyboard_hooks, (void *)data);
 	mlx_loop_hook(data->mlx, &ft_time_hook, (void *)data);
 	mlx_cursor_hook(data->mlx, &ft_cursor_hook, (void *)data);
