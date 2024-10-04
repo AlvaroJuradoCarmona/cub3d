@@ -33,6 +33,7 @@ SRCS = src/parse/ft_check_map.c \
 			src/parse/ft_parse_identifiers.c \
 			src/parse/ft_parse_map.c \
 			src/parse/ft_read_map.c \
+			src/raycasting/raycasting.c \
 			src/utils/ft_error.c \
 			src/utils/ft_free_and_join.c \
 			src/utils/ft_free_and_null.c \
@@ -44,6 +45,11 @@ SRCS = src/parse/ft_check_map.c \
 			src/utils/ft_put_rgbimg.c \
 			src/utils/ft_split_free.c \
 			src/utils/ft_split_size.c \
+			src/utils/ft_cleaner.c \
+			src/utils/ft_cursor_hook.c \
+			src/utils/ft_loop_hooks.c \
+			src/utils/ft_swap.c \
+			src/utils/ft_iswall.c \
 			src/cub3d.c \
 			$(SRCS_GNL)
 
@@ -62,7 +68,7 @@ mlx:
 	gcc $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	gcc $(CFLAGS) $(SRCS) $(LIBFT_A) $(MLX_A) $(INCLUDES) $(EXTRA_F42) -o $(NAME)
+	gcc $(CFLAGS) $(SRCS) $(LIBFT_A) $(MLX_A) $(INCLUDES) $(EXTRA_FLAGS) $(EXTRA_F42) -o $(NAME)
 
 clean: 
 	make clean -C $(LIBFT)

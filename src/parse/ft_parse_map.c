@@ -57,7 +57,8 @@ static int ft_check_surroundings(t_data data, int i, int j, int direction)
  */
 static int ft_validate_map(t_data data)
 {
-    int i, j;
+    int i;
+    int j;
     
     i = -1;
     while (++i < data.map_height)

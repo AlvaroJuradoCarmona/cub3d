@@ -42,9 +42,11 @@ void	ft_check_map(char *map, t_data *data)
 	t_coords	p;
 	short int	flag[2];
 
-	ft_bzero(&p, sizeof(p));  // Inicializar las coordenadas
-	ft_bzero(flag, sizeof(flag));
-	while (map[p.x] && flag[0] < 2 && flag[1] < 2)
+	p.x = -1;
+	p.y = 0;
+	flag[0] = 0;
+	flag[1] = 0;
+	while (map[++p.x] && flag[0] < 2 && flag[1] < 2)
 	{
 		if (map[p.x] == 'N' || map[p.x] == 'S' || map[p.x] == 'W' || map[p.x] == 'E')
 			flag[0]++;
@@ -58,7 +60,6 @@ void	ft_check_map(char *map, t_data *data)
 		}
 		else if (ft_is_invalid_value(map[p.x]))
 			flag[0] = 2;
-		p.x++;
 	}
 	if (flag[0] != 1 || flag[1] > 1)
 		ft_error("Error: Invalid map configuration.", 0);

@@ -59,23 +59,26 @@ static bool ft_extract_color(char *color_str, t_pixels *color)
  * @param j Índice en la línea donde comienza la búsqueda del identificador.
  * @return int Índice del identificador (0-5) o -1 en caso de error.
  */
-static int ft_find_identifier(char *line, t_data *data, int j)
+static int ft_find_identifier(char *line, t_data *data, int *j)
 {
-    if (line[0] == '\n') // Línea vacía
-        return (-1);
-    else if (ft_strncmp("NO ", &line[j], 3) == 0 && !data->iden[0])
-        return (0);  // Textura norte
-    else if (ft_strncmp("SO ", &line[j], 3) == 0 && !data->iden[1])
-        return (1);  // Textura sur
-    else if (ft_strncmp("WE ", &line[j], 3) == 0 && !data->iden[2])
-        return (2);  // Textura oeste
-    else if (ft_strncmp("EA ", &line[j], 3) == 0 && !data->iden[3])
-        return (3);  // Textura este
-    else if (ft_strncmp("F ", &line[j], 2) == 0 && !data->iden[4])
-        return (4);  // Color del suelo
-    else if (ft_strncmp("C ", &line[j], 2) == 0 && !data->iden[5])
-        return (5);  // Color del techo
-    ft_error("Error: Duplicated or malformed identifier.", 0);  // Identificador duplicado o incorrecto
+	*j = 0;
+	while (line[*j] == ' ')
+		(*j)++;
+	if (line[0] == '\n')
+		return (-1);
+	else if (ft_strncmp("NO ", &line[*j], 3) == 0 && !data->iden[0])
+		return (0);
+	else if (ft_strncmp("SO ", &line[*j], 3) == 0 && !data->iden[1])
+		return (1);
+	else if (ft_strncmp("WE ", &line[*j], 3) == 0 && !data->iden[2])
+		return (2);
+	else if (ft_strncmp("EA ", &line[*j], 3) == 0 && !data->iden[3])
+		return (3);
+	else if (ft_strncmp("F ", &line[*j], 2) == 0 && !data->iden[4])
+		return (4);
+	else if (ft_strncmp("C ", &line[*j], 2) == 0 && !data->iden[5])
+		return (5);
+    ft_error("Error: Duplicated or malformed identifier.", 0);
     return (-2);  // Error
 }
 
@@ -90,28 +93,25 @@ static int ft_find_identifier(char *line, t_data *data, int j)
  */
 char *ft_parse_identifiers(int fd, t_data *data, char *line)
 {
-    int iden;  
-    int i;     
-    int j;     
+	int		pos;
+	int		i;
+	int		j;
 
-    i = 0;
-    while (line && i <= 5)
-    {   
-        j = 0;
-        while (line[j] == ' ')
-            j++;
-        iden = ft_find_identifier(line, data, j);
-        if (iden >= 0 && iden <= 5)
-        {
-            j += (iden >= 4) ? 2 : 3;
-            while (line[j] == ' ')
-                j++;
-            data->iden[iden] = ft_substr(line + j, 0, ft_strlen(line + j) - 1);
-            i++;
-        }
-        ft_free_and_null((void **)&line);
-        line = get_next_line(fd);
-    }
+	i = 0;
+	while (line && i < 6)
+	{
+		pos = ft_find_identifier(line, data, &j);
+		if (pos >= 0 && pos <= 5)
+		{
+			j += 2;
+			while (line[j] == ' ')
+				j++;
+			data->iden[pos] = ft_substr(line + j, 0, ft_strlen(line + j) - 1);
+			i++;
+		}
+		ft_free_and_null((void **)&line);
+		line = get_next_line(fd);
+	}
     if (!line || !ft_extract_color(data->iden[4], &data->map_open.floor_color) || \
         !ft_extract_color(data->iden[5], &data->map_open.ceiling_color))
         ft_error("Error: Invalid map or color data.", 0);

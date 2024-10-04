@@ -11,52 +11,82 @@
 /******************************************************************************/
 
 #include "../../inc/cub3d.h"
-/*
-// Función auxiliar para cargar imágenes y texturas
+
+static int	ft_isspace(char c)
+{
+	return (c == ' ' || ((unsigned char)c >= 9 && (unsigned char)c <= 13));
+}
+
+mlx_image_t	*ft_img_by_text(t_data *data, char *file, int x, int y)
+{
+	mlx_texture_t	*texture;
+	mlx_image_t		*img;
+	t_coords		pos;
+	char			*aux;
+
+	pos.x = 0;
+	while (ft_isspace(file[pos.x]))
+		pos.x++;
+	pos.y = ft_strlen(file) - 1;
+	while (ft_isspace(file[pos.y]) && pos.y > 0)
+		pos.y--;
+	aux = ft_substr(file, pos.x, pos.y - pos.x + 1);
+	texture = mlx_load_png(aux);
+	ft_free_and_null((void **)&aux);
+	if (!texture)
+		ft_img_failure(data);
+	img = mlx_texture_to_image(data->mlx, texture);
+	if (mlx_image_to_window(data->mlx, img, x, y) == -1)
+		ft_img_failure(data);
+	mlx_delete_texture(texture);
+	return (img);
+}
+
+void	init_ids_imgs(t_data *data)
+{
+	data->wall.n = ft_img_by_text(data, data->iden[0], 0, 0);
+	data->wall.s = ft_img_by_text(data, data->iden[1], 0, 0);
+	data->wall.w = ft_img_by_text(data, data->iden[2], 0, 0);
+	data->wall.e = ft_img_by_text(data, data->iden[3], 0, 0);
+	data->wall.n->enabled = 0;
+	data->wall.s->enabled = 0;
+	data->wall.w->enabled = 0;
+	data->wall.e->enabled = 0;
+	data->wall.door = ft_img_by_text(data, "./src/imgs/door_ciel.png", 0, 0);
+	data->wall.door->enabled = 0;
+}
+
 static void init_images_aux(t_data *data)
 {
-    
-    data->background_img = ft_img_by_text(data, "./src/imgs/galaxy.png", 0, 0);
-    data->full_img = mlx_new_image(data->mlx, data->screen_width, data->screen_height);
-    if (!data->full_img)
-        ft_img_failure(data);
-    if (mlx_image_to_window(data->mlx, data->full_img, 0, 0) == -1)
-        ft_img_failure(data);
-
-    data->victory_img = ft_img_by_text(data, "./src/imgs/victory.png", 0, 0);
-    data->victory_img->enabled = 0; // La imagen de victoria está deshabilitada por defecto
-
-    // Cargar y posicionar el minimapa
-    data->minimap = mlx_new_image(data->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
-    if (!data->minimap)
-        ft_img_failure(data);
-    if (mlx_image_to_window(data->mlx, data->minimap, data->screen_width - MINIMAP_SIZE, 0) == -1)
-        ft_img_failure(data);
-
-    // Cargar y posicionar el rayo del jugador
-    data->player.ray_img = mlx_new_image(data->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
-    if (!data->player.ray_img)
-        ft_img_failure(data);
-    if (mlx_image_to_window(data->mlx, data->player.ray_img, 
-        data->screen_width - MINIMAP_SIZE / 2 - data->player.ray_img->width / 2, 
-        MINIMAP_SIZE / 2 - data->player.ray_img->height / 2) == -1)
-        ft_img_failure(data);
-
-    // Cargar la imagen del jugador
-    data->player.img = ft_img_by_text(data, "./src/imgs/ufo.png", 
-        data->screen_width - MINIMAP_SIZE / 2 - 25, MINIMAP_SIZE / 2 - 25);
-
-    // Cargar la imagen del cofre
-    data->chest_img = ft_img_by_text(data, "./src/imgs/chest.png", 0, 0);
+    data->galaxy_i = ft_img_by_text(data, "./src/imgs/galaxy.png", 0, 0);
+	data->full_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (!data->full_img)
+		ft_img_failure(data);
+	if (mlx_image_to_window(data->mlx, data->full_img, 0, 0) == -1)
+		ft_img_failure(data);
+	init_ids_imgs(data);
+	data->victory_i = ft_img_by_text(data, "./src/imgs/victory.png", 0, 0);
+	data->victory_i->enabled = 0;
+	data->minimap = mlx_new_image(data->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
+	if (!data->minimap)
+		ft_img_failure(data);
+	if (mlx_image_to_window(data->mlx, data->minimap, WIDTH - MINIMAP_SIZE, \
+	0) == -1)
+		ft_img_failure(data);
+	data->player.ray_img = mlx_new_image(data->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
+	if (!data->player.ray_img)
+		ft_img_failure(data);
+	if (mlx_image_to_window(data->mlx, data->player.ray_img, WIDTH - \
+MINIMAP_SIZE / 2 - data->player.ray_img->width / 2, MINIMAP_SIZE / 2 - \
+data->player.ray_img->height / 2) == -1)
+		ft_img_failure(data);
+	data->player.img = ft_img_by_text(data, "./src/imgs/ufo.png", WIDTH - \
+	MINIMAP_SIZE / 2 - 25, MINIMAP_SIZE / 2 - 25);
+	data->chest_img = ft_img_by_text(data, "./src/imgs/chest.png", 0, 0);
 }
-*/
-// Función principal para inicializar las imágenes y texturas
+
 void ft_init_images(t_data *data)
 {
-    printf("init_images\n");
-
-   // data->background_img = NULL;
-
     data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
     if (!data->mlx)
     {
@@ -64,24 +94,17 @@ void ft_init_images(t_data *data)
         ft_initial_cleaner(data);
         exit(EXIT_FAILURE);
     }
-
-    // Inicializar mapas con las dimensiones correctas
     data->map_close.width = data->map_width * BLOCKSIZE;
-    data->map_close.height = data->map_height * BLOCKSIZE;
-    data->map_close.img = ft_calloc(data->map_close.width * data->map_close.height, sizeof(uint8_t));
-
-    data->map_open.img = ft_calloc(data->map_close.width * data->map_close.height, sizeof(uint8_t));
-
-    // Cargar texturas adicionales
-//    init_images_aux(data);
-
-    // Desactivar cofre al inicio
-//    data->chest_img->enabled = 0;
-
-    // Inicializar temporizadores
-    data->time_counter = 0;
-    data->open_coldown = -30000;
-
-    // Mostrar el tiempo en pantalla
-//    data->time = mlx_put_string(data->mlx, "TIME: 0", data->screen_width - MINIMAP_SIZE / 2 - 100, MINIMAP_SIZE + 10);
+	data->map_close.rwidth = data->map_width * BLOCKSIZE * 4;
+	data->map_close.height = data->map_height * BLOCKSIZE;
+	data->map_close.img = ft_calloc(data->map_close.rwidth * \
+	data->map_close.height, sizeof(uint8_t));
+	data->map_open.img = ft_calloc(data->map_close.rwidth * \
+	data->map_close.height, sizeof(uint8_t));
+	init_images_aux(data);
+	data->chest_img->enabled = 0;
+	data->time_counter = 0;
+	data->open_coldown = -30000;
+	data->time = mlx_put_string(data->mlx, "TIME: 0", WIDTH - \
+	MINIMAP_SIZE / 2 - 100, MINIMAP_SIZE + 10);
 }

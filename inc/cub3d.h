@@ -25,7 +25,15 @@
 # include <stdbool.h>
 
 # define WIDTH 1920
-# define HEIGHT 1080
+# define HEIGHT 1024
+# define MINIMAP_SIZE 400
+# define PLAYER_SIZE 16
+# define BLOCKSIZE 200
+# define COLDOWN 3
+# define ANGLE 60
+# define PI 3.141592653589793
+# define TORADIANS 0.017453292519943295
+# define VELOCITY 16
 
 // Definiciones de teclas
 # define KEY_W 119
@@ -35,10 +43,6 @@
 # define KEY_ESC 65307
 
 # define INVALID_ARGC "Error. Enter a single map as argument\n"
-
-// Definir el tamaño del bloque y la conversión a radianes
-# define BLOCKSIZE 64
-# define TORADIANS (M_PI / 180.0)
 
 // Estructura para almacenar coordenadas simples (x, y)
 typedef struct  s_coords
@@ -55,11 +59,14 @@ typedef struct  s_pos
 }               t_pos;
 
 // Estructura para almacenar valores del jugador
-typedef struct  s_player
+typedef struct s_player
 {
-    t_pos       pos;
-    double      angle;
-}               t_player;
+	t_coords			pos;
+	double				angle;
+	mlx_texture_t		*texture;
+	mlx_image_t			*img;
+	mlx_image_t			*ray_img;
+}		t_player;
 
 // Estructura para almacenar los valores de color
 typedef struct  s_pixels
@@ -69,18 +76,6 @@ typedef struct  s_pixels
     int         b;  // Componente azul
     int         a;  // Componente alfa (transparencia)
 }               t_pixels;
-
-typedef struct s_color
-{
-	t_pixels	white;
-	t_pixels	gray;
-	t_pixels	blue;
-	t_pixels	green;
-	t_pixels	golden;
-	t_pixels	red;
-	t_pixels	ceiling;
-	t_pixels	floor;
-}		t_color;
 
 // Estructura para almacenar los datos del mapa
 typedef struct  s_map
@@ -104,6 +99,27 @@ typedef struct  s_img
     int         endian;
 }               t_img;
 
+typedef struct s_wall_texture
+{
+	mlx_image_t			*n;
+	mlx_image_t			*s;
+	mlx_image_t			*w;
+	mlx_image_t			*e;
+	mlx_image_t			*door;
+}		t_wall_texture;
+
+typedef struct s_color
+{
+	t_pixels	white;
+	t_pixels	gray;
+	t_pixels	blue;
+	t_pixels	green;
+	t_pixels	golden;
+	t_pixels	red;
+	t_pixels	ceiling;
+	t_pixels	floor;
+}		t_color;
+
 // Estructura principal para almacenar todos los datos del juego
 typedef struct  s_data
 {
@@ -121,17 +137,21 @@ typedef struct  s_data
     int         map_height;    // Almacena la altura del mapa
     int         map_width;     // Almacena el ancho del mapa
     t_player    player;        // Información del jugador
-    void *mlx; // puntero al entorno MLX
+	mlx_t			*mlx;
     void *win; // puntero a la ventana MLX
-    void *full_img; // imagen completa
+    mlx_image_t *full_img; // imagen completa
     void *background_img; // imagen de fondo
-    void *victory_img; // imagen de victoria
-    void *minimap; // minimapa
+	mlx_image_t		*minimap;
     void *player_img; // imagen del jugador
-    mlx_image_t *chest_img; // imagen del cofre
+    mlx_image_t		*time;
     int time_counter; // contador de tiempo
     int open_coldown; // cooldown de apertura
-    void *time; // para mostrar el tiempo
+    double			aux;
+
+    mlx_image_t		*chest_img;
+	mlx_image_t		*galaxy_i;
+	mlx_image_t		*victory_i;
+    t_wall_texture	wall;
     t_color color;
 }               t_data;
 
@@ -157,5 +177,15 @@ void	ft_init_images(t_data *data);
 void	ft_map_construct(t_data *data);
 void	ft_put_rgbcolor(uint8_t *pixels, t_pixels color, bool random);
 void	ft_put_rgbimg(uint8_t *dest, uint8_t *or);
+void	raycasting(t_data *data, t_coords pos);
+int     ft_iswall(t_coords p, t_data *data);
+void	ft_keyboard_hooks(void *param);
+void	ft_cursor_hook(double x2, double y2, void *param);
+void	ft_redraw(t_data *data, double angle);
+void	ft_initial_cleaner(t_data *data);
+void	ft_img_failure(t_data *data);
+void	ft_move(t_data *data, t_coords pos, double x, double y);
+int     ft_check_player_abroad(t_coords p, t_data *data, bool doors);
+void	ft_swap(void *a, void *b, size_t size);
 
 #endif

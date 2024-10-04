@@ -106,7 +106,5 @@ void	ft_map_construct(t_data *data)
 			ft_put_rgbcolor(&data->map_open.img[i], data->color.green, 1);
 		i += 4;
 	}
-//	ft_draw_minimap(data);
-//	ft_draw_ufo_rays(data, data->player.ray_img, data->player.angle);
-//	raycasting(data, data->player.pos);
+	raycasting(data, data->player.pos);
 }

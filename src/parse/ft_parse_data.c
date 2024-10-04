@@ -27,10 +27,10 @@ void	ft_parse_data(char *file, t_data *data)
 {
 	int		fd;
 	int		file_len;
-
-	(void) data;
 	
-	file_len = ft_strlen(file);
+	file_len = 0;
+	while (file[file_len])
+		file_len++;
 	if (file_len < 5 || ft_strncmp(".cub", &file[file_len - 4], 4) != 0)
 		ft_error("Error: Invalid file extension. Expected .cub", 0);
 	fd = open(file, O_RDONLY);

@@ -1,6 +1,6 @@
-#include "cub3d.h"
+#include "../../inc/cub3d.h"
 
-static void	picasso(int col, t_cub3data *data, mlx_image_t *img, int rest)
+static void	picasso(int col, t_data *data, mlx_image_t *img, int rest)
 {
 	int			i;
 	int			col2;
@@ -12,27 +12,27 @@ static void	picasso(int col, t_cub3data *data, mlx_image_t *img, int rest)
 	while (++i < HEIGHT - 1)
 	{
 		if (i < data->aux)
-			put_rgbcolor(&(data->full_img->pixels[(i * WIDTH + col) * 4]), \
+			ft_put_rgbcolor(&(data->full_img->pixels[(i * WIDTH + col) * 4]), \
 			data->color.ceiling, 0);
 		else if (i < HEIGHT - data->aux - 1)
-			put_rgbimg(&(data->full_img->pixels[(i * WIDTH + col) * 4]), \
+			ft_put_rgbimg(&(data->full_img->pixels[(i * WIDTH + col) * 4]), \
 			&img->pixels[(col2 + (i - (int)(data->aux)) * \
 			img->height / (HEIGHT - 2 * (int)data->aux) * img->width) * 4]);
 		else
-			put_rgbcolor(&(data->full_img->pixels[(i * WIDTH + col) * 4]), \
+			ft_put_rgbcolor(&(data->full_img->pixels[(i * WIDTH + col) * 4]), \
 			data->color.floor, 0);
-		put_rgbimg(&data->full_img->pixels[(i * WIDTH + col + 1) * 4], \
+		ft_put_rgbimg(&data->full_img->pixels[(i * WIDTH + col + 1) * 4], \
 		&data->full_img->pixels[(i * WIDTH + col) * 4]);
 	}
 }
 
-static void	ft_wall_direction(t_cub3data *data, t_coords p, int d, double iter)
+static void	ft_wall_direction(t_data *data, t_coords p, int d, double iter)
 {
 	int	rest_y;
 	int	rest_x;
 	int	aux;
 
-	aux = (p.y * data->width * BLOCKSIZE + p.x) * 4;
+	aux = (p.y * data->map_width * BLOCKSIZE + p.x) * 4;
 	rest_x = p.x % BLOCKSIZE;
 	rest_y = p.y % BLOCKSIZE;
 	data->aux = d;
@@ -55,7 +55,7 @@ static void	ft_wall_direction(t_cub3data *data, t_coords p, int d, double iter)
 		picasso(iter * (WIDTH / ANGLE), data, data->wall.n, rest_x);
 }
 
-static int	ft_take_dist(t_cub3data *data, double iter, t_coords *p)
+static int	ft_take_dist(t_data *data, double iter, t_coords *p)
 {
 	int			dist;
 	double		fix;
@@ -81,7 +81,7 @@ static int	ft_take_dist(t_cub3data *data, double iter, t_coords *p)
 	return (dist);
 }
 
-void	raycasting(t_cub3data *data, t_coords pos)
+void	raycasting(t_data *data, t_coords pos)
 {
 	static const double	iter_variation = 1.0 / (WIDTH / ANGLE);
 	double				iter;
