@@ -54,7 +54,6 @@ static void init_game_state(t_data *data)
     data->screen_height = 0;
     data->pause = 0;
     data->door_open = 0;
-    data->pass_door = 0;
     data->cursor_hook = 0;
 }
 

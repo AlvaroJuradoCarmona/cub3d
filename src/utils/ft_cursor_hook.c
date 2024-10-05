@@ -31,8 +31,6 @@ void	ft_move(t_data *data, t_coords pos, double x, double y)
 	data->player.pos.x = pos.x;
 	data->player.pos.y = pos.y;
 	ft_redraw(data, 0);
-	if (j == 2)
-		data->pass_door = 1;
 }
 
 void	ft_redraw(t_data *data, double angle)

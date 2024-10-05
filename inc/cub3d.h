@@ -50,13 +50,6 @@ typedef struct  s_coords
     int         y;
 }               t_coords;
 
-// Estructura para almacenar posiciones (doble precisión)
-typedef struct  s_pos
-{
-    double      x;
-    double      y;
-}               t_pos;
-
 // Estructura para almacenar valores del jugador
 typedef struct s_player
 {
@@ -116,7 +109,6 @@ typedef struct  s_data
     t_map       map_open;
     bool        pause;
     bool        door_open;
-    bool        pass_door;
     bool        cursor_hook;
     char        **map;         // Almacena el mapa
     int         map_height;    // Almacena la altura del mapa

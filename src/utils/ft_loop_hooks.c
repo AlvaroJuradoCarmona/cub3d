@@ -73,13 +73,11 @@ static void	ft_doors_hooks(t_data *data)
 			ft_move(data, data->player.pos, 0, 0);
 		}
 	}
-	if (data->door_open == 1 && (data->pass_door == 1 || \
-	data->open_coldown == 0))
+	if (data->door_open == 1 && data->open_coldown == 0)
 	{
 		if (ft_check_player_abroad(data->player.pos, data, 0) != 0)
 			return ;
 		data->door_open = 0;
-		data->pass_door = 0;
 		ft_swap(&data->map_close.img, &data->map_open.img, sizeof(uint8_t *));
 		ft_move(data, data->player.pos, 0, 0);
 	}
