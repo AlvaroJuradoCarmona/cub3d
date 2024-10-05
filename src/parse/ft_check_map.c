@@ -48,7 +48,8 @@ void	ft_check_map(char *map, t_data *data)
 	flag[1] = 0;
 	while (map[++p.x] && flag[0] < 2 && flag[1] < 2)
 	{
-		if (map[p.x] == 'N' || map[p.x] == 'S' || map[p.x] == 'W' || map[p.x] == 'E')
+		if (map[p.x] == 'N' || map[p.x] == 'S' || \
+			map[p.x] == 'W' || map[p.x] == 'E')
 			flag[0]++;
 		else if (map[p.x] == '\n')
 		{

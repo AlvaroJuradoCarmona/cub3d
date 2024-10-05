@@ -31,32 +31,24 @@ static bool	ft_extract_color(char *color_str, t_pixels *color)
 	if (!aux || ft_split_size(aux) != 3)
 		return (ft_split_free(aux), 0);
 	while (i < 3)
-    {
-        if (!ft_isdigit(aux[i][0]) || ft_atoi(aux[i]) < 0 || ft_atoi(aux[i]) > 255)
-        {
-            ft_split_free(aux);
-            return (0);
-        }
-        i++;
-    }
-    color->r = ft_atoi(aux[0]);
-    color->g = ft_atoi(aux[1]);
-    color->b = ft_atoi(aux[2]);
-    color->a = 255;
-    ft_split_free(aux);
-    return (1);
+	{
+		if (!ft_isdigit(aux[i][0]) || ft_atoi(aux[i]) < 0 || \
+			ft_atoi(aux[i]) > 255)
+		{
+			ft_split_free(aux);
+			return (0);
+		}
+		i++;
+	}
+	color->r = ft_atoi(aux[0]);
+	color->g = ft_atoi(aux[1]);
+	color->b = ft_atoi(aux[2]);
+	color->a = 255;
+	ft_split_free(aux);
+	return (1);
 }
 
-/**
- * @brief Encuentra el identificador (NO, SO, WE, EA, F, C) en una línea.
- * Verifica que no haya duplicados y devuelve el índice correspondiente al identificador.
- * 
- * @param line Línea de texto que contiene el identificador.
- * @param data Estructura principal que contiene los identificadores.
- * @param j Índice en la línea donde comienza la búsqueda del identificador.
- * @return int Índice del identificador (0-5) o -1 en caso de error.
- */
-static int ft_find_identifier(char *line, t_data *data, int *j)
+static int	ft_find_identifier(char *line, t_data *data, int *j)
 {
 	*j = 0;
 	while (line[*j] == ' ')
