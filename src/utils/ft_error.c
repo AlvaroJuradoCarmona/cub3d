@@ -58,11 +58,13 @@ void	ft_error(const char *prompt, int num_args, ...)
 {
 	va_list	args;
 	void	**ptr;
+	int		i;
 
 	(void)prompt;
 	(void)num_args;
+	i = 0;
 	va_start(args, num_args);
-	for (int i = 0; i < num_args; ++i)
+	while (++i < num_args)
 	{
 		ptr = va_arg(args, void **);
 		free_and_null(ptr);

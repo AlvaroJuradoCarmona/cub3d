@@ -12,70 +12,70 @@
 
 #include "../../inc/cub3d.h"
 
-/**
- * @brief Valida si los espacios vacíos en el mapa están correctamente rodeados 
- * por paredes.
- * 
- * Esta función revisa en una dirección (vertical u horizontal) desde una 
- * posición específica en el mapa si el espacio vacío (' ') está rodeado por 
- * paredes ('1'). Si encuentra cualquier otro carácter que no sea una pared, 
- * la validación falla.
- *
- * @param data La estructura principal de datos del juego que contiene el mapa.
- * @param i Coordenada Y de la posición en el mapa.
- * @param j Coordenada X de la posición en el mapa.
- * @param direction La dirección a verificar: 0 para vertical (revisar filas), 
- * 1 para horizontal (revisar columnas).
- * @return int 1 si hay un error en la validación (no rodeado por paredes), 
- * 0 si es válido.
- */
-static int	ft_check_surroundings(t_data data, int i, int j, int direction)
+static int	ft_vertical(t_data data, int i, int j, int i1)
 {
-	int	step;
-	int	limit;
-
-	step = (direction == 0) ? 1 : -1;
-	limit = (direction == 0) ? data.map_height : data.map_width;
-	while ((direction == 0 && (i >= 0 && i < limit)) || (direction == 1 && (j >= 0 && j < limit)))
+	while (--i >= 0)
 	{
-		if (i < 0 || j < 0 || i >= data.map_height || j >= data.map_width || data.map[i][j] == '\0')
-			return (1);
-		if (data.map[i][j] != ' ')
+		if (!(data.map[i][j] == ' '))
 		{
 			if (data.map[i][j] == '1')
-				break;
-			return (1);
+				break ;
+			else
+				return (1);
 		}
-		i += (direction == 0) ? step : 0;
-		j += (direction == 1) ? step : 0;
 	}
-	return (0);
-}
-
-static int	ft_validate_map(t_data data)
-{
-	int i;
-	int j;
-
-	i = -1;
+	i = i1;
 	while (++i < data.map_height)
 	{
-		j = -1;
-		while (++j < data.map_width)
+		if (!(data.map[i][j] == ' '))
 		{
-			if (data.map[i][j] == ' ')
-			{
-				if (ft_check_surroundings(data, i, j, 0) || ft_check_surroundings(data, i, j, 1))
-					return (1);
-			}
+			if (data.map[i][j] == '1')
+				break ;
+			else
+				return (1);
 		}
 	}
 	return (0);
 }
 
-static int	ft_set_player_position(t_data *data)
+static int	ft_horizontal(t_data data, int i, int j, int j1)
 {
-	t_coords p;
+	while (--j >= 0)
+	{
+		if (!(data.map[i][j] == ' '))
+		{
+			if (data.map[i][j] == '1')
+				break ;
+			else
+				return (1);
+		}
+	}
+	j = j1;
+	while (++j < (data.map_width))
+	{
+		if (!(data.map[i][j] == ' '))
+		{
+			if (data.map[i][j] == '1')
+				break ;
+			else
+				return (1);
+		}
+	}
+	return (0);
+}
+
+static int	check_enviroment(t_data data, int i, int j)
+{
+	if (ft_vertical(data, i, j, i))
+		return (1);
+	if (ft_horizontal(data, i, j, j))
+		return (1);
+	return (0);
+}
+
+static void	ft_set_player_position(t_data *data)
+{
+	t_coords	p;
 
 	p.y = -1;
 	while (data->map[++p.y])
@@ -83,31 +83,47 @@ static int	ft_set_player_position(t_data *data)
 		p.x = -1;
 		while (data->map[p.y][++p.x])
 		{
-			char pos = data->map[p.y][p.x];
-			if (pos == 'N' || pos == 'S' || pos == 'W' || pos == 'E')
+			if (data->map[p.y][p.x] == 'N' || data->map[p.y][p.x] == 'S' || \
+			data->map[p.y][p.x] == 'W' || data->map[p.y][p.x] == 'E')
 			{
-                data->player.pos.x = p.x * BLOCKSIZE + BLOCKSIZE / 2;
-                data->player.pos.y = p.y * BLOCKSIZE + BLOCKSIZE / 2;
-                data->player.angle = (pos == 'N') ? 90 * TORADIANS :
-                                     (pos == 'S') ? 270 * TORADIANS :
-                                     (pos == 'W') ? 180 * TORADIANS : 0;
-				return (1);
+				data->player.pos.x = p.x * BLOCKSIZE + BLOCKSIZE / 2;
+				data->player.pos.y = p.y * BLOCKSIZE + BLOCKSIZE / 2;
+				if (data->map[p.y][p.x] == 'N')
+					data->player.angle = 90 * TORADIANS;
+				else if (data->map[p.y][p.x] == 'S')
+					data->player.angle = 270 * TORADIANS;
+				else if (data->map[p.y][p.x] == 'W')
+					data->player.angle = 180 * TORADIANS;
+				else
+					data->player.angle = 0;
+				return ;
 			}
 		}
 	}
-	return (0);
 }
 
 void	ft_parse_map(t_data *data)
 {
-	if (ft_validate_map(*data))
+	int	i;
+	int	j;
+	int	error;
+
+	i = -1;
+	j = -1;
+	error = 0;
+	while (++i < data->map_height && !error)
+	{
+		while (++j < data->map_width && !error)
+		{
+			if (data->map[i][j] == ' ')
+				error = check_enviroment(*data, i, j);
+		}
+		j = -1;
+	}
+	if (error)
 	{
 		ft_initial_cleaner(data);
-		ft_error("ERROR: Mapa no válido", 0);
+		ft_error("ERROR\n This map is not valid\n", 0);
 	}
-	if (!ft_set_player_position(data))
-	{
-		ft_initial_cleaner(data);
-		ft_error("ERROR: No se encontró la posición del jugador", 0);
-	}
+	ft_set_player_position(data);
 }
