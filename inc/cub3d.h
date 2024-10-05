@@ -26,7 +26,6 @@
 
 # define WIDTH 1920
 # define HEIGHT 1024
-# define MINIMAP_SIZE 400
 # define PLAYER_SIZE 16
 # define BLOCKSIZE 200
 # define COLDOWN 3
@@ -63,8 +62,6 @@ typedef struct s_player
 {
 	t_coords			pos;
 	double				angle;
-	mlx_texture_t		*texture;
-	mlx_image_t			*img;
 }		t_player;
 
 // Estructura para almacenar los valores de color
@@ -87,16 +84,6 @@ typedef struct  s_map
     t_pixels    floor_color;    // Color del suelo
     t_pixels    ceiling_color;  // Color del techo
 }               t_map;
-
-// Estructura para almacenar datos de la imagen
-typedef struct  s_img
-{
-    void        *img_ptr;
-    int         *data;
-    int         bpp;
-    int         size_l;
-    int         endian;
-}               t_img;
 
 typedef struct s_wall_texture
 {
@@ -125,7 +112,6 @@ typedef struct  s_data
     char        *iden[6];
     int         screen_width;
     int         screen_height;
-    t_img       img;
     t_map       map_close;
     t_map       map_open;
     bool        pause;
