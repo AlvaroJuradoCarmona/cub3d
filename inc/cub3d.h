@@ -139,7 +139,6 @@ typedef struct  s_data
     t_player    player;        // Información del jugador
 	mlx_t			*mlx;
     mlx_image_t *full_img; // imagen completa
-    mlx_image_t		*time;
     int open_coldown; // cooldown de apertura
     double			aux;
 	mlx_image_t		*galaxy_i;

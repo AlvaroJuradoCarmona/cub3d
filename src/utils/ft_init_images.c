@@ -94,6 +94,4 @@ void ft_init_images(t_data *data)
 	data->map_close.height, sizeof(uint8_t));
 	init_images_aux(data);
 	data->open_coldown = -30000;
-	data->time = mlx_put_string(data->mlx, "TIME: 0", WIDTH - \
-	MINIMAP_SIZE / 2 - 100, MINIMAP_SIZE + 10);
 }

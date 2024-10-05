@@ -8,10 +8,6 @@ static void	finish(t_data *data)
 	data->player.img->enabled = 0;
 	data->galaxy_i->enabled = 0;
 	data->player.ray_img->enabled = 0;
-	data->time->instances->x = WIDTH / 2 - 30;
-	data->time->instances->y = HEIGHT / 2;
-	mlx_delete_image(data->mlx, data->time);
-	data->time = mlx_put_string(data->mlx, str, WIDTH / 2 - 30, HEIGHT / 2);
 	ft_free_and_null((void **)&str);
 }
 
