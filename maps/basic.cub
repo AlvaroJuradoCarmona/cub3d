@@ -1,7 +1,7 @@
 NO ./src/imgs/redbrick.png
-SO ./src/imgs/redbrick.png
-WE ./src/imgs/redbrick.png
-EA ./src/imgs/redbrick.png
+SO ./src/imgs/bluestone.png
+WE ./src/imgs/wood.png
+EA ./src/imgs/purplestone.png
 
 F 117,94,94
 C 65,52,221
