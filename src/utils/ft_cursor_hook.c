@@ -6,7 +6,7 @@
 /*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 10:36:04 by ajurado-          #+#    #+#             */
-/*   Updated: 2024/10/05 10:37:04 by ajurado-         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:46:00 by ajurado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,4 @@ void	ft_redraw(t_data *data, double angle)
 		data->player.angle += angle;
 	}
 	raycasting(data, data->player.pos);
-}
-
-void	ft_cursor_hook(double x2, double y2, void *param)
-{
-	t_data			*data;
-	static double	x1;
-	static int		i;
-
-	x1 = 0;
-	i = 0;
-	data = param;
-	i++;
-	if (!data->cursor_hook || i < 2 || data->pause == 1)
-		return ;
-	i = 0;
-	ft_redraw(data, (x2 - x1) * 0.001745);
-	x1 = x2;
-	(void)y2;
 }

@@ -71,15 +71,6 @@ static int	ft_find_identifier(char *line, t_data *data, int *j)
 	return (-2);
 }
 
-/**
- * @brief Procesa los identificadores del archivo (NO, SO, WE, EA, F, C)
- * y extrae las rutas de texturas o los valores de colores del suelo/techo.
- * 
- * @param fd Descriptor del archivo de mapa.
- * @param data Estructura principal que almacena los datos del mapa.
- * @param line Línea de texto actual del archivo.
- * @return char* La siguiente línea después de procesar los identificadores.
- */
 char	*ft_parse_identifiers(int fd, t_data *data, char *line)
 {
 	int		pos;

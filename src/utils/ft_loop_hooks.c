@@ -6,7 +6,7 @@
 /*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 10:32:44 by ajurado-          #+#    #+#             */
-/*   Updated: 2024/10/05 10:32:58 by ajurado-         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:53:06 by ajurado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,10 @@ static void	ft_vision_hooks(t_data *data)
 		ft_redraw(data, -0.1745);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		ft_redraw(data, 0.1745);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_0) && !data->cursor_hook)
-	{
-		data->cursor_hook = 1;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_0))
 		mlx_set_cursor_mode(data->mlx, MLX_MOUSE_DISABLED);
-	}
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_1) && data->cursor_hook)
-	{
-		data->cursor_hook = 0;
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_1))
 		mlx_set_cursor_mode(data->mlx, MLX_MOUSE_NORMAL);
-	}
 }
 
 static void	ft_movement_hooks(t_data *data)

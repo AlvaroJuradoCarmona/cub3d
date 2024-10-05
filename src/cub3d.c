@@ -33,7 +33,6 @@ static void	setup_mlx(t_data *data)
 	ft_init_images(data);
 	ft_map_construct(data);
 	mlx_loop_hook(data->mlx, &ft_keyboard_hooks, (void *)data);
-	mlx_cursor_hook(data->mlx, &ft_cursor_hook, (void *)data);
 	mlx_loop(data->mlx);
 }
 

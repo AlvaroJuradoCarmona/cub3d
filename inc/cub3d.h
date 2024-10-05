@@ -102,7 +102,6 @@ typedef struct s_data
 	t_map			map_open;
 	bool			pause;
 	bool			door_open;
-	bool			cursor_hook;
 	char			**map;
 	int				map_height;
 	int				map_width;
@@ -139,7 +138,6 @@ void	ft_put_rgbimg(uint8_t *dest, uint8_t *or);
 void	raycasting(t_data *data, t_coords pos);
 int		ft_iswall(t_coords p, t_data *data);
 void	ft_keyboard_hooks(void *param);
-void	ft_cursor_hook(double x2, double y2, void *param);
 void	ft_redraw(t_data *data, double angle);
 void	ft_initial_cleaner(t_data *data);
 void	ft_img_failure(t_data *data);
