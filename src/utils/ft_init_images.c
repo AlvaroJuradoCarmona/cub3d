@@ -58,22 +58,12 @@ void	init_ids_imgs(t_data *data)
 
 static void init_images_aux(t_data *data)
 {
-    data->galaxy_i = ft_img_by_text(data, "./src/imgs/galaxy.png", 0, 0);
 	data->full_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->full_img)
 		ft_img_failure(data);
 	if (mlx_image_to_window(data->mlx, data->full_img, 0, 0) == -1)
 		ft_img_failure(data);
 	init_ids_imgs(data);
-	data->player.ray_img = mlx_new_image(data->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
-	if (!data->player.ray_img)
-		ft_img_failure(data);
-	if (mlx_image_to_window(data->mlx, data->player.ray_img, WIDTH - \
-MINIMAP_SIZE / 2 - data->player.ray_img->width / 2, MINIMAP_SIZE / 2 - \
-data->player.ray_img->height / 2) == -1)
-		ft_img_failure(data);
-	data->player.img = ft_img_by_text(data, "./src/imgs/ufo.png", WIDTH - \
-	MINIMAP_SIZE / 2 - 25, MINIMAP_SIZE / 2 - 25);
 }
 
 void ft_init_images(t_data *data)

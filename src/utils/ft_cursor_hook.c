@@ -5,9 +5,6 @@ static void	finish(t_data *data)
 	char		*str;
 
 	data->pause = 1;
-	data->player.img->enabled = 0;
-	data->galaxy_i->enabled = 0;
-	data->player.ray_img->enabled = 0;
 	ft_free_and_null((void **)&str);
 }
 
@@ -43,12 +40,6 @@ void	ft_redraw(t_data *data, double angle)
 	if (angle != 0)
 	{
 		data->player.angle += angle;
-		data->galaxy_i->instances->x -= (int)(angle * 300);
-		if (data->galaxy_i->instances->x > 0)
-			data->galaxy_i->instances->x = 1920 - data->galaxy_i->width;
-		else if (data->galaxy_i->instances->x < (int32_t)(1920 - \
-			data->galaxy_i->width))
-			data->galaxy_i->instances->x = 0;
 	}
 	raycasting(data, data->player.pos);
 }

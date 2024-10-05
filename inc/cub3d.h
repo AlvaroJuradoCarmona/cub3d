@@ -65,7 +65,6 @@ typedef struct s_player
 	double				angle;
 	mlx_texture_t		*texture;
 	mlx_image_t			*img;
-	mlx_image_t			*ray_img;
 }		t_player;
 
 // Estructura para almacenar los valores de color
@@ -141,7 +140,6 @@ typedef struct  s_data
     mlx_image_t *full_img; // imagen completa
     int open_coldown; // cooldown de apertura
     double			aux;
-	mlx_image_t		*galaxy_i;
     t_wall_texture	wall;
     t_color color;
 }               t_data;
