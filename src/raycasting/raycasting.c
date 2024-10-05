@@ -6,7 +6,7 @@
 /*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 10:57:47 by ajurado-          #+#    #+#             */
-/*   Updated: 2024/10/05 10:57:48 by ajurado-         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:08:33 by ajurado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,6 @@ static void	ft_wall_direction(t_data *data, t_coords p, int d, double iter)
 	rest_x = p.x % BLOCKSIZE;
 	rest_y = p.y % BLOCKSIZE;
 	data->aux = d;
-	if (ft_iswall(p, data) == 2)
-	{
-		if ((rest_x <= 2 && data->map_close.img[aux - 2 * 4] != 255) || \
-		(rest_x >= BLOCKSIZE - 2 && data->map_close.img[aux + 2 * 4] != 255))
-			picasso(iter * (WIDTH / ANGLE), data, data->wall.door, rest_y);
-		else
-			picasso(iter * (WIDTH / ANGLE), data, data->wall.door, rest_x);
-		return ;
-	}
 	if (rest_x <= 2 && data->map_close.img[aux - 2 * 4] != 255)
 		picasso(iter * (WIDTH / ANGLE), data, data->wall.e, rest_y);
 	else if (rest_x >= BLOCKSIZE - 2 && data->map_close.img[aux + 2 * 4] != 255)

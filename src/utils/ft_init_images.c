@@ -52,8 +52,6 @@ void	init_ids_imgs(t_data *data)
 	data->wall.s->enabled = 0;
 	data->wall.w->enabled = 0;
 	data->wall.e->enabled = 0;
-	data->wall.door = ft_img_by_text(data, "./src/imgs/door_ciel.png", 0, 0);
-	data->wall.door->enabled = 0;
 }
 
 static void	init_images_aux(t_data *data)

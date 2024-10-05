@@ -79,7 +79,6 @@ typedef struct s_wall_texture
 	mlx_image_t			*s;
 	mlx_image_t			*w;
 	mlx_image_t			*e;
-	mlx_image_t			*door;
 }		t_wall_texture;
 
 typedef struct s_color
