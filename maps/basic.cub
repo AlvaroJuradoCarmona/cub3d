@@ -3,8 +3,8 @@ SO ./src/imgs/redbrick.png
 WE ./src/imgs/redbrick.png
 EA ./src/imgs/redbrick.png
 
-F 110,180,40
-C 0,0,30
+F 117,94,94
+C 0,0,0
 
 1111111111
 1000000001

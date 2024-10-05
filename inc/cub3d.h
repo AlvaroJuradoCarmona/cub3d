@@ -138,19 +138,11 @@ typedef struct  s_data
     int         map_width;     // Almacena el ancho del mapa
     t_player    player;        // Información del jugador
 	mlx_t			*mlx;
-    void *win; // puntero a la ventana MLX
     mlx_image_t *full_img; // imagen completa
-    void *background_img; // imagen de fondo
-	mlx_image_t		*minimap;
-    void *player_img; // imagen del jugador
     mlx_image_t		*time;
-    int time_counter; // contador de tiempo
     int open_coldown; // cooldown de apertura
     double			aux;
-
-    mlx_image_t		*chest_img;
 	mlx_image_t		*galaxy_i;
-	mlx_image_t		*victory_i;
     t_wall_texture	wall;
     t_color color;
 }               t_data;

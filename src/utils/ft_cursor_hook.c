@@ -7,17 +7,10 @@ static void	finish(t_data *data)
 	data->pause = 1;
 	data->player.img->enabled = 0;
 	data->galaxy_i->enabled = 0;
-	data->chest_img->enabled = 0;
-	data->minimap->enabled = 0;
 	data->player.ray_img->enabled = 0;
 	data->time->instances->x = WIDTH / 2 - 30;
 	data->time->instances->y = HEIGHT / 2;
-	data->victory_i->enabled = 1;
 	mlx_delete_image(data->mlx, data->time);
-	str = ft_free_and_join(ft_strdup("TIME: "), ft_itoa(data->time_counter
-				/ 100));
-	str = ft_free_and_join(str, ft_strdup("."));
-	str = ft_free_and_join(str, ft_itoa(data->time_counter % 100));
 	data->time = mlx_put_string(data->mlx, str, WIDTH / 2 - 30, HEIGHT / 2);
 	ft_free_and_null((void **)&str);
 }

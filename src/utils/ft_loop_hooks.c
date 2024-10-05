@@ -71,7 +71,6 @@ static void	ft_doors_hooks(t_data *data)
 			sizeof(uint8_t *));
 			data->door_open = 1;
 			ft_move(data, data->player.pos, 0, 0);
-			data->open_coldown = data->time_counter + COLDOWN * 100;
 		}
 	}
 	if (data->door_open == 1 && (data->pass_door == 1 || \

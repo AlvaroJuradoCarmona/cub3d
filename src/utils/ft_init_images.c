@@ -65,14 +65,6 @@ static void init_images_aux(t_data *data)
 	if (mlx_image_to_window(data->mlx, data->full_img, 0, 0) == -1)
 		ft_img_failure(data);
 	init_ids_imgs(data);
-	data->victory_i = ft_img_by_text(data, "./src/imgs/victory.png", 0, 0);
-	data->victory_i->enabled = 0;
-	data->minimap = mlx_new_image(data->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
-	if (!data->minimap)
-		ft_img_failure(data);
-	if (mlx_image_to_window(data->mlx, data->minimap, WIDTH - MINIMAP_SIZE, \
-	0) == -1)
-		ft_img_failure(data);
 	data->player.ray_img = mlx_new_image(data->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
 	if (!data->player.ray_img)
 		ft_img_failure(data);
@@ -82,7 +74,6 @@ data->player.ray_img->height / 2) == -1)
 		ft_img_failure(data);
 	data->player.img = ft_img_by_text(data, "./src/imgs/ufo.png", WIDTH - \
 	MINIMAP_SIZE / 2 - 25, MINIMAP_SIZE / 2 - 25);
-	data->chest_img = ft_img_by_text(data, "./src/imgs/chest.png", 0, 0);
 }
 
 void ft_init_images(t_data *data)
@@ -102,8 +93,6 @@ void ft_init_images(t_data *data)
 	data->map_open.img = ft_calloc(data->map_close.rwidth * \
 	data->map_close.height, sizeof(uint8_t));
 	init_images_aux(data);
-	data->chest_img->enabled = 0;
-	data->time_counter = 0;
 	data->open_coldown = -30000;
 	data->time = mlx_put_string(data->mlx, "TIME: 0", WIDTH - \
 	MINIMAP_SIZE / 2 - 100, MINIMAP_SIZE + 10);

@@ -17,9 +17,6 @@ void	ft_final_cleaner(t_data *data)
 	ft_initial_cleaner(data);
 	mlx_delete_image(data->mlx, data->player.img);
 	mlx_delete_image(data->mlx, data->galaxy_i);
-	mlx_delete_image(data->mlx, data->chest_img);
-	mlx_delete_image(data->mlx, data->victory_i);
-	mlx_delete_image(data->mlx, data->minimap);
 	mlx_delete_image(data->mlx, data->time);
 	mlx_delete_image(data->mlx, data->player.ray_img);
 	mlx_delete_image(data->mlx, data->full_img);

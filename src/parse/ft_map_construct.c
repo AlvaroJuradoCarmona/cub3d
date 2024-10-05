@@ -37,30 +37,6 @@ static void	ft_draw_square(t_data *data, t_coords p, t_pixels color)
 	}
 }
 
-static void	ft_draw_chest(t_data *data, t_coords p)
-{
-	t_coords	i;
-
-	ft_draw_square(data, p, data->color.blue);
-	p.x = p.x * BLOCKSIZE - 1 + (BLOCKSIZE / 2 - data->chest_img->width / 2);
-	p.y = p.y * BLOCKSIZE - 1 + (BLOCKSIZE / 2 - data->chest_img->width / 2);
-	i.y = -1;
-	while (++i.y < (int)data->chest_img->width)
-	{
-		i.x = -1;
-		while (++i.x < (int)data->chest_img->width)
-		{
-			if (data->chest_img->pixels[(i.y * \
-			data->chest_img->width + i.x) * 4 + 3] > 60)
-			{
-				ft_put_rgbimg(&data->map_close.img[((p.y + i.y) * \
-data->map_close.width + p.x + i.x) * 4], &data->chest_img->pixels[(i.y * \
-data->chest_img->width + i.x) * 4]);
-			}
-		}
-	}
-}
-
 static void	ft_draw_map(t_data *data)
 {
 	t_coords	p;
@@ -77,8 +53,6 @@ static void	ft_draw_map(t_data *data)
 data->map[p.y][p.x] == 'N' || data->map[p.y][p.x] == 'S' ||
 data->map[p.y][p.x] == 'W' || data->map[p.y][p.x] == 'E')
 				ft_draw_square(data, p, data->color.blue);
-			else if (data->map[p.y][p.x] == 'F')
-				ft_draw_chest(data, p);
 			else if (data->map[p.y][p.x] == '2')
 				ft_draw_square(data, p, data->color.red);
 		}
