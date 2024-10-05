@@ -6,7 +6,7 @@
 /*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 10:57:47 by ajurado-          #+#    #+#             */
-/*   Updated: 2024/10/05 12:08:33 by ajurado-         ###   ########.fr       */
+/*   Updated: 2024/10/05 14:50:36 by ajurado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int	ft_take_dist(t_data *data, double iter, t_coords *p)
 	p->y < HEIGHT * BLOCKSIZE && ++dist)
 	{
 		iswall = ft_iswall(*p, data);
-		if ((iswall == 2 && data->door_open == 0) || iswall == 1)
+		if (iswall == 1)
 			break ;
 		p->x = data->player.pos.x + dist * cos_c;
 		p->y = data->player.pos.y + dist * sin_c;

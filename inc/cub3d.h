@@ -101,7 +101,6 @@ typedef struct s_data
 	t_map			map_close;
 	t_map			map_open;
 	bool			pause;
-	bool			door_open;
 	char			**map;
 	int				map_height;
 	int				map_width;
@@ -142,7 +141,7 @@ void	ft_redraw(t_data *data, double angle);
 void	ft_initial_cleaner(t_data *data);
 void	ft_img_failure(t_data *data);
 void	ft_move(t_data *data, t_coords pos, double x, double y);
-int		ft_check_player_abroad(t_coords p, t_data *data, bool doors);
+int		ft_check_player_abroad(t_coords p, t_data *data);
 void	ft_swap(void *a, void *b, size_t size);
 
 #endif

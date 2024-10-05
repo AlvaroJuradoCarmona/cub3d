@@ -6,7 +6,7 @@
 /*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 10:36:04 by ajurado-          #+#    #+#             */
-/*   Updated: 2024/10/05 12:46:00 by ajurado-         ###   ########.fr       */
+/*   Updated: 2024/10/05 15:01:35 by ajurado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,14 @@ void	ft_move(t_data *data, t_coords pos, double x, double y)
 	i = 3;
 	pos.x += x * i;
 	pos.y += y * i;
-	j = ft_check_player_abroad(pos, data, 1);
-	while ((j == 0 || (j == 2 && data->door_open == 1) || \
-	j == 3) && ++i < VELOCITY)
+	j = ft_check_player_abroad(pos, data);
+	while ((j == 0 || j == 3) && ++i < VELOCITY)
 	{
 		if (j == 3)
 			return (finish(data));
 		pos.x = data->player.pos.x + x * i;
 		pos.y = data->player.pos.y + y * i;
-		j = ft_check_player_abroad(pos, data, 1);
+		j = ft_check_player_abroad(pos, data);
 	}
 	if (i <= 3)
 		return ;
