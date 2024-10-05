@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_init_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 09:25:04 by fsantama          #+#    #+#             */
-/*   Updated: 2024/10/01 10:12:17 by fsantama         ###   ########.fr       */
+/*   Created: 2024/10/05 10:33:24 by ajurado-          #+#    #+#             */
+/*   Updated: 2024/10/05 10:33:24 by ajurado-         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
@@ -48,13 +48,13 @@ static void	init_colors(t_data	*data)
  *
  * @param data Estructura principal que contiene toda la información del juego.
  */
-static void init_game_state(t_data *data)
+static void	init_game_state(t_data *data)
 {
-    data->screen_width = 0;
-    data->screen_height = 0;
-    data->pause = 0;
-    data->door_open = 0;
-    data->cursor_hook = 0;
+	data->screen_width = 0;
+	data->screen_height = 0;
+	data->pause = 0;
+	data->door_open = 0;
+	data->cursor_hook = 0;
 }
 
 /**
@@ -65,10 +65,10 @@ static void init_game_state(t_data *data)
  *
  * @param data Estructura principal que contiene toda la información del juego.
  */
-static void init_map(t_data *data)
+static void	init_map(t_data *data)
 {
-    data->map_close.img = NULL;
-    data->map_open.img = NULL;
+	data->map_close.img = NULL;
+	data->map_open.img = NULL;
 }
 
 /**
@@ -80,16 +80,17 @@ static void init_map(t_data *data)
  *
  * @param data Estructura principal que contiene toda la información del juego.
  */
-static void init_iden(t_data *data)
+static void	init_iden(t_data *data)
 {
-    int i = 0;
-    while (i < 6)
-    {
-        data->iden[i] = NULL;
-        i++;
-    }
-}
+	int	i;
 
+	i = 0;
+	while (i < 6)
+	{
+		data->iden[i] = NULL;
+		i++;
+	}
+}
 
 /**
  * @brief Inicializa los valores de la estructura principal del juego.
@@ -101,10 +102,10 @@ static void init_iden(t_data *data)
  *
  * @param data Estructura principal que contiene toda la información del juego.
  */
-void ft_init_data(t_data *data)
+void	ft_init_data(t_data *data)
 {
-    init_iden(data);
-    init_map(data);
-    init_game_state(data);
-    init_colors(data);
+	init_iden(data);
+	init_map(data);
+	init_game_state(data);
+	init_colors(data);
 }

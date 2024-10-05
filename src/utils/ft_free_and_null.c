@@ -12,11 +12,11 @@
 
 #include "../../inc/cub3d.h"
 
-void ft_free_and_null(void **ptr)
+void	ft_free_and_null(void **ptr)
 {
-    if (*ptr)
-    {
-        free(*ptr);
-        *ptr = NULL;
-    }
+	if (*ptr)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
 }

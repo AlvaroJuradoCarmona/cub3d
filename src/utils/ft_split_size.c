@@ -12,11 +12,12 @@
 
 #include "../../inc/cub3d.h"
 
-int ft_split_size(char **split)
+int	ft_split_size(char **split)
 {
-    int size = 0;
+	int	size;
 
-    while (split && split[size])
-        size++;
-    return (size);
+	size = 0;
+	while (split && split[size])
+		size++;
+	return (size);
 }

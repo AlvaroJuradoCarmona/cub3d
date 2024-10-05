@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cursor_hook.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/05 10:36:04 by ajurado-          #+#    #+#             */
+/*   Updated: 2024/10/05 10:37:04 by ajurado-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 static void	finish(t_data *data)
@@ -44,10 +56,12 @@ void	ft_redraw(t_data *data, double angle)
 
 void	ft_cursor_hook(double x2, double y2, void *param)
 {
-	t_data		*data;
-	static double	x1 = 0;
-	static int		i = 0;
+	t_data			*data;
+	static double	x1;
+	static int		i;
 
+	x1 = 0;
+	i = 0;
 	data = param;
 	i++;
 	if (!data->cursor_hook || i < 2 || data->pause == 1)

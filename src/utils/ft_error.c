@@ -21,46 +21,53 @@
  *
  * @param ptr Doble puntero a la memoria que se quiere liberar.
  */
-void free_and_null(void **ptr)
+void	free_and_null(void **ptr)
 {
-    if (ptr && *ptr)
-    {
-        free(*ptr);
-        *ptr = NULL;
-    }
+	if (ptr && *ptr)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
 }
 
 /**
- * @brief Muestra un mensaje de error, libera memoria si es necesario y termina el programa.
+ * @brief Muestra un mensaje de error, libera memoria si es necesario y 
+ * termina el programa.
  *
- * Esta función se usa para manejar errores críticos. Muestra un mensaje en la salida estándar de errores (stderr),
- * libera cualquier memoria pasada como argumento (si la hay), y termina el programa con un código de error.
+ * Esta función se usa para manejar errores críticos. Muestra un mensaje 
+ * en la salida estándar de errores (stderr),
+ * libera cualquier memoria pasada como argumento (si la hay), y termina 
+ * el programa con un código de error.
  *
  * @param prompt Mensaje de error que se mostrará.
  * @param num_args Número de punteros que se deben liberar.
- * @param ... Lista de argumentos de punteros que se quieren liberar antes de salir.
+ * @param ... Lista de argumentos de punteros que se quieren liberar 
+ * antes de salir.
  *
- * @details Esta función utiliza argumentos variables para aceptar un número indefinido de punteros
- * que serán liberados mediante `free_and_null`. Después de liberar los punteros, el programa se termina.
- * Los punteros se pasan como `void**` para permitir su modificación (establecerlos a NULL después de la liberación).
+ * @details Esta función utiliza argumentos variables para aceptar un 
+ * número indefinido de punteros
+ * que serán liberados mediante `free_and_null`. Después de liberar los 
+ * punteros, el programa se termina.
+ * Los punteros se pasan como `void**` para permitir su modificación 
+ * (establecerlos a NULL después de la liberación).
  *
- * @return No retorna, ya que la función llama a `exit(EXIT_FAILURE)` para terminar el programa.
+ * @return No retorna, ya que la función llama a `exit(EXIT_FAILURE)` para 
+ * terminar el programa.
  */
-void ft_error(const char *prompt, int num_args, ...)
+void	ft_error(const char *prompt, int num_args, ...)
 {
-    va_list args;
-    void **ptr;
+	va_list	args;
+	void	**ptr;
 
-    (void)prompt;
-    (void)num_args;
-
-    va_start(args, num_args);
-    for (int i = 0; i < num_args; ++i)
-    {
-        ptr = va_arg(args, void **);
-        free_and_null(ptr);
-    }
-    va_end(args);
-    fprintf(stderr, "\033[31;1m%s\n\033[0m", prompt);    
-    exit(EXIT_FAILURE);
+	(void)prompt;
+	(void)num_args;
+	va_start(args, num_args);
+	for (int i = 0; i < num_args; ++i)
+	{
+		ptr = va_arg(args, void **);
+		free_and_null(ptr);
+	}
+	va_end(args);
+	fprintf(stderr, "\033[31;1m%s\n\033[0m", prompt);
+	exit(EXIT_FAILURE);
 }

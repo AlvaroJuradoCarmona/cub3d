@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_init_images.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/05 11:12:17 by fsantama          #+#    #+#             */
-/*   Updated: 2024/10/01 10:41:48 by fsantama         ###   ########.fr       */
+/*   Created: 2024/10/05 10:44:04 by ajurado-          #+#    #+#             */
+/*   Updated: 2024/10/05 10:44:04 by ajurado-         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
@@ -56,7 +56,7 @@ void	init_ids_imgs(t_data *data)
 	data->wall.door->enabled = 0;
 }
 
-static void init_images_aux(t_data *data)
+static void	init_images_aux(t_data *data)
 {
 	data->full_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->full_img)
@@ -66,16 +66,16 @@ static void init_images_aux(t_data *data)
 	init_ids_imgs(data);
 }
 
-void ft_init_images(t_data *data)
+void	ft_init_images(t_data *data)
 {
-    data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
-    if (!data->mlx)
-    {
-        ft_error("Error: MLX init failure", 0);
-        ft_initial_cleaner(data);
-        exit(EXIT_FAILURE);
-    }
-    data->map_close.width = data->map_width * BLOCKSIZE;
+	data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
+	if (!data->mlx)
+	{
+		ft_error("Error: MLX init failure", 0);
+		ft_initial_cleaner(data);
+		exit(EXIT_FAILURE);
+	}
+	data->map_close.width = data->map_width * BLOCKSIZE;
 	data->map_close.rwidth = data->map_width * BLOCKSIZE * 4;
 	data->map_close.height = data->map_height * BLOCKSIZE;
 	data->map_close.img = ft_calloc(data->map_close.rwidth * \

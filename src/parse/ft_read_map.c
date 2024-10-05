@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_read_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 12:24:31 by fsantama          #+#    #+#             */
-/*   Updated: 2024/09/27 10:27:49 by fsantama         ###   ########.fr       */
+/*   Created: 2024/10/05 10:57:59 by ajurado-          #+#    #+#             */
+/*   Updated: 2024/10/05 10:57:59 by ajurado-         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
@@ -16,7 +16,8 @@
  * @brief Lee y procesa el mapa desde el archivo .cub
  * 
  * Esta función se encarga de leer el archivo línea por línea, omitiendo 
- * las líneas vacías y concatenando las líneas de mapa para su validación y normalización.
+ * las líneas vacías y concatenando las líneas de mapa para su validación y 
+ * normalización.
  * 
  * @param fd El descriptor de archivo del mapa
  * @param data La estructura principal del juego (t_data)

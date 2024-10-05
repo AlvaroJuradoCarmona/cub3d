@@ -12,8 +12,8 @@
 
 #include "../../inc/cub3d.h"
 
-void ft_free(void *ptr)
+void	ft_free(void *ptr)
 {
-    if (ptr)
-        free(ptr);
+	if (ptr)
+		free(ptr);
 }

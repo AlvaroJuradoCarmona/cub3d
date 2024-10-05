@@ -31,7 +31,8 @@ bool	ft_is_invalid_value(char c)
  * 
  * Esta función recorre el mapa para verificar que cumpla con los 
  * requisitos esenciales: debe contener exactamente un punto de inicio
- * del jugador ('N', 'S', 'W' o 'E'). También asegura que las dimensiones del mapa sean correctas.
+ * del jugador ('N', 'S', 'W' o 'E'). También asegura que las dimensiones del 
+ * mapa sean correctas.
  * 
  * @param map El contenido del mapa en una cadena
  * @param data La estructura principal del juego (t_data)

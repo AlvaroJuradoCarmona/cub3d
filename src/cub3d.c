@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 13:26:54 by fsantama          #+#    #+#             */
-/*   Updated: 2024/10/02 10:22:22 by fsantama         ###   ########.fr       */
+/*   Created: 2024/10/05 10:30:31 by ajurado-          #+#    #+#             */
+/*   Updated: 2024/10/05 10:30:31 by ajurado-         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
@@ -37,17 +37,14 @@ static void	setup_mlx(t_data *data)
 	mlx_loop(data->mlx);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_data  data;
+	t_data	data;
 
 	check_arguments(argc, argv);
 	ft_init_data(&data);
 	ft_parse_data(argv[1], &data);
 	setup_mlx(&data);
-	ft_final_cleaner(&data); // Asume que hay que limpiar al final del programa
-	
-    return (EXIT_SUCCESS);
+	ft_final_cleaner(&data);
+	return (EXIT_SUCCESS);
 }
-
-

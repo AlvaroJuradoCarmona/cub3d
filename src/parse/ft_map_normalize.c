@@ -13,12 +13,13 @@
 #include "../../inc/cub3d.h"
 
 /**
- * @brief Ajusta el tamaño de cada fila del mapa para que todas tengan el mismo ancho
+ * @brief Ajusta el tamaño de cada fila del mapa para que todas tengan el mismo 
+ * ancho
  * 
  * Esta función normaliza el mapa agregando espacios en blanco al final de cada
  * fila que no cumpla con el ancho máximo. Así, se asegura que todas las filas 
- * tengan la misma longitud, lo cual es necesario para la correcta representación 
- * del mapa en el juego.
+ * tengan la misma longitud, lo cual es necesario para la correcta 
+ * representación del mapa en el juego.
  * 
  * @param map El contenido del mapa en una cadena
  * @param data La estructura principal del juego (t_data)

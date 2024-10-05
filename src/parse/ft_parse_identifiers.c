@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_parse_identifiers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 12:38:25 by fsantama          #+#    #+#             */
-/*   Updated: 2024/09/27 10:28:28 by fsantama         ###   ########.fr       */
+/*   Created: 2024/10/05 11:16:29 by ajurado-          #+#    #+#             */
+/*   Updated: 2024/10/05 11:16:29 by ajurado-         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
@@ -21,33 +21,30 @@
  * @return true Si la extracción fue exitosa.
  * @return false Si hubo algún error en el formato o valores inválidos.
  */
-static bool ft_extract_color(char *color_str, t_pixels *color)
+static bool	ft_extract_color(char *color_str, t_pixels *color)
 {
-    char **aux;
-    int i;
+	char	**aux;
+	int		i;
 
-    aux = ft_split(color_str, ',');  // Divide la cadena de texto por comas
-    if (!aux || ft_split_size(aux) != 3) // Verifica que tiene 3 valores (R, G, B)
-        return (ft_split_free(aux), 0);  // Libera la memoria si el formato no es válido
-
-    i = 0;
-    // Verifica si los valores son válidos (números entre 0 y 255)
-    while (i < 3)
+	i = 0;
+	aux = ft_split(color_str, ',');
+	if (!aux || ft_split_size(aux) != 3)
+		return (ft_split_free(aux), 0);
+	while (i < 3)
     {
         if (!ft_isdigit(aux[i][0]) || ft_atoi(aux[i]) < 0 || ft_atoi(aux[i]) > 255)
         {
-            ft_split_free(aux);  // Libera la memoria en caso de error
-            return (0);          // Devuelve falso si algún valor es inválido
+            ft_split_free(aux);
+            return (0);
         }
         i++;
     }
-    // Asigna los valores de color extraídos
     color->r = ft_atoi(aux[0]);
     color->g = ft_atoi(aux[1]);
     color->b = ft_atoi(aux[2]);
-    color->a = 255;  // Color completamente opaco (alfa = 255)
-    ft_split_free(aux);  // Libera la memoria después de su uso
-    return (1);  // Éxito
+    color->a = 255;
+    ft_split_free(aux);
+    return (1);
 }
 
 /**
@@ -78,8 +75,8 @@ static int ft_find_identifier(char *line, t_data *data, int *j)
 		return (4);
 	else if (ft_strncmp("C ", &line[*j], 2) == 0 && !data->iden[5])
 		return (5);
-    ft_error("Error: Duplicated or malformed identifier.", 0);
-    return (-2);  // Error
+	ft_error("Error: Duplicated or malformed identifier.", 0);
+	return (-2);
 }
 
 /**
@@ -91,7 +88,7 @@ static int ft_find_identifier(char *line, t_data *data, int *j)
  * @param line Línea de texto actual del archivo.
  * @return char* La siguiente línea después de procesar los identificadores.
  */
-char *ft_parse_identifiers(int fd, t_data *data, char *line)
+char	*ft_parse_identifiers(int fd, t_data *data, char *line)
 {
 	int		pos;
 	int		i;
@@ -112,8 +109,9 @@ char *ft_parse_identifiers(int fd, t_data *data, char *line)
 		ft_free_and_null((void **)&line);
 		line = get_next_line(fd);
 	}
-    if (!line || !ft_extract_color(data->iden[4], &data->map_open.floor_color) || \
-        !ft_extract_color(data->iden[5], &data->map_open.ceiling_color))
-        ft_error("Error: Invalid map or color data.", 0);
-    return line;
+	if (!line || \
+		!ft_extract_color(data->iden[4], &data->map_open.floor_color) || \
+		!ft_extract_color(data->iden[5], &data->map_open.ceiling_color))
+		ft_error("Error: Invalid map or color data.", 0);
+	return (line);
 }
